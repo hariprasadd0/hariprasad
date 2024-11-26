@@ -68,9 +68,8 @@ const Home = () => {
 
         <HoverCard>
           <p className="text-base md:text-lg leading-6  md:!leading-8 text-muted-foreground mb-6">
-            I am a
             <HoverCardTrigger asChild>
-              <span className=" cursor-pointer px-1.5 text-primary/80 underline underline-offset-2 font-medium ">
+              <span className=" cursor-pointer pr-1.5 text-primary/80 underline underline-offset-2 font-medium ">
                 Software Developer
               </span>
             </HoverCardTrigger>
