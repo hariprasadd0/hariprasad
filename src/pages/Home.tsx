@@ -36,54 +36,20 @@ import {
   Tech,
 } from '@/components/components';
 // Icons
-import {
-  FiGithub,
-  FiCalendar,
-  DiMongodb,
-  X,
-  BiLogoTypescript,
-  FaReact,
-  FaNodeJs,
-  FaAws,
-  IoIosGitBranch,
-  RiTailwindCssFill,
-  RiNextjsFill,
-} from '@/components/icons/icon';
+import { FiGithub, FiCalendar } from 'react-icons/fi';
+import { X } from 'lucide-react';
 
 import Timeline from '@/components/Timeline';
 import socialLinks from '@/data/socialLinks';
 import works from '@/data/works';
-import { DiPostgresql } from 'react-icons/di';
 import { FreelanceLogo, userLogo } from '@/assets/workImg';
+import { eduData } from '@/data/education';
+import { techData, TechItem } from '@/data/techData';
+import { experience, experienceStatus } from '@/data/experience';
+import { Link } from 'react-router-dom';
 const Home = () => {
   const blog = false;
-  const experience = false;
-  const defaultTab = experience ? 'Experience' : 'Education';
-  const eduData = [
-    {
-      title: 'Bachelor of Computer Applications',
-      company: 'ITM College of Arts & Science',
-      role: '2021 - 2024',
-      skills: [
-        'Python',
-        'PSQL',
-        'Data Structures',
-        'Java',
-        'C#',
-        'Web',
-        'Networking',
-      ],
-      current: true,
-    },
-    {
-      title: 'XII-Computer Science',
-      company: 'G.H.S.S Malur',
-      role: '2019-2020',
-      period: '2023 - Present',
-      current: false,
-      skills: ['html', 'cpp', 'Basic CS'],
-    },
-  ];
+  const defaultTab = experienceStatus ? 'Experience' : 'Education';
 
   return (
     <Card className=" h-full outline-none shadow-none overflow-hidden rounded-none flex flex-col  items-center  md:flex-row gap-2 md:gap-16">
@@ -113,27 +79,29 @@ const Home = () => {
           </p>
 
           <HoverCardContent className="w-80">
-            <div className="flex justify-between space-x-4">
-              <Avatar>
-                <AvatarImage
-                  alt="avatar"
-                  src={FreelanceLogo}
-                />
-                <AvatarFallback>F</AvatarFallback>
-              </Avatar>
-              <div className="space-y-1">
-                <h4 className="text-sm font-semibold">@closureLabs</h4>
-                <p className="text-sm">
-                  An open-source organization focused on building solutions
-                </p>
-                <div className="flex items-center pt-2">
-                  <FiCalendar className="mr-2 h-4 w-4 opacity-70" />{' '}
-                  <span className="text-xs text-muted-foreground">
-                    Joined December 2021
-                  </span>
+            <Link to={'https://github.com/Closure-Lab'}>
+              <div className="flex justify-between space-x-4">
+                <Avatar>
+                  <AvatarImage
+                    alt="avatar"
+                    src={FreelanceLogo}
+                  />
+                  <AvatarFallback>F</AvatarFallback>
+                </Avatar>
+                <div className="space-y-1">
+                  <h4 className="text-sm font-semibold">@closureLabs</h4>
+                  <p className="text-sm">
+                    An open-source organization focused on building solutions
+                  </p>
+                  <div className="flex items-center pt-2">
+                    <FiCalendar className="mr-2 h-4 w-4 opacity-70" />{' '}
+                    <span className="text-xs text-muted-foreground">
+                      Joined December 2021
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           </HoverCardContent>
         </HoverCard>
         <div className="flex items-center gap-2">
@@ -177,7 +145,7 @@ const Home = () => {
             >
               Education
             </TabsTrigger>
-            {experience ? (
+            {experienceStatus ? (
               <TabsTrigger
                 className="text-xs"
                 value="Experience"
@@ -208,49 +176,20 @@ const Home = () => {
 
           {experience ? (
             <TabsContent value="Experience">
-              <Timeline data={eduData} />
+              <Timeline data={experience} />
             </TabsContent>
           ) : (
             <></>
           )}
           <TabsContent value="Tech-Stack">
             <Card className=" my-1 flex p-3 max-w-md py-5 gap-2 flex-wrap shadow-none">
-              <Tech
-                tech="Typescript"
-                Icon={BiLogoTypescript}
-              />
-              <Tech
-                tech="React"
-                Icon={FaReact}
-              />
-              <Tech
-                tech="MonogDB"
-                Icon={DiMongodb}
-              />
-              <Tech
-                tech="Git"
-                Icon={IoIosGitBranch}
-              />
-              <Tech
-                tech="Aws"
-                Icon={FaAws}
-              />
-              <Tech
-                tech="Tailwind CSS"
-                Icon={RiTailwindCssFill}
-              />
-              <Tech
-                tech="Node Js"
-                Icon={FaNodeJs}
-              />
-              <Tech
-                tech="Next Js"
-                Icon={RiNextjsFill}
-              />
-              <Tech
-                tech="postgresql"
-                Icon={DiPostgresql}
-              />
+              {techData.map(({ tech, Icon }: TechItem, index: number) => (
+                <Tech
+                  key={index}
+                  tech={tech}
+                  Icon={Icon}
+                />
+              ))}
             </Card>
           </TabsContent>
           <TabsContent value="Education">
