@@ -1,6 +1,16 @@
 import { Badge } from '@/components/ui/badge';
 
-const Timeline = ({ data }) => {
+type TimelineItem = {
+  current: boolean;
+  title: string;
+  company: string;
+  duration?: string;
+  skills?: string[];
+};
+type TimelineProps = {
+  data: TimelineItem[];
+};
+const Timeline = ({ data }: TimelineProps) => {
   return (
     <div className="space-y-5 pt-2 pb-6 md:pb-8 lg:pb-12">
       {' '}
@@ -49,10 +59,10 @@ const Timeline = ({ data }) => {
                   {/* Company */}
                   <p className="text-xs text-muted-foreground mt-0.5">
                     {item.company}
-                    {item.role && (
+                    {item.duration && (
                       <span className="text-muted-foreground/60">
                         {' '}
-                        • {item.role}
+                        • {item.duration}
                       </span>
                     )}
                   </p>
