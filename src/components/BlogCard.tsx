@@ -1,12 +1,16 @@
 import { Card } from './components';
-import { Blog } from '@/data/blog';
-interface BlogCardProps {
+type Blog = {
+  title: string;
+  description: string;
+  url: string;
+};
+type BlogCardProps = {
   blog: Blog[];
-}
+};
 const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
   return (
     <div className="flex flex-col gap-2">
-      {blog.map((item: Blog, index: number) => (
+      {blog.map((item, index) => (
         <Card
           className="p-2 rounded-sm cursor-pointer w-full flex flex-col gap-1 hover:-translate-y-1 transition duration-200 ease-in-out"
           key={index}
