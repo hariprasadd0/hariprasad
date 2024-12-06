@@ -1,9 +1,12 @@
 import { Card } from './components';
 import { Blog } from '@/data/blog';
-const BlogCard = ({ blog }) => {
+interface BlogCardProps {
+  blog: Blog[];
+}
+const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
   return (
     <div className="flex flex-col gap-2">
-      {blog.map((item: Blog, index) => (
+      {blog.map((item: Blog, index: number) => (
         <Card
           className="p-2 rounded-sm cursor-pointer w-full flex flex-col gap-1 hover:-translate-y-1 transition duration-200 ease-in-out"
           key={index}
