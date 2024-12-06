@@ -47,8 +47,18 @@ import { eduData } from '@/data/education';
 import { techData, TechItem } from '@/data/techData';
 import { experience, experienceStatus } from '@/data/experience';
 import { Link } from 'react-router-dom';
+import { fetchBlogs, Blog } from '@/data/blog';
+import { useEffect, useState } from 'react';
 const Home = () => {
-  const blog = false;
+  const [blog, setBlog] = useState<Blog[]>([]);
+  useEffect(() => {
+    const allBlogs = async () => {
+      const response = await fetchBlogs();
+      setBlog(response);
+    };
+    allBlogs();
+  }, []);
+
   const defaultTab = experienceStatus ? 'Experience' : 'Education';
 
   return (
@@ -196,7 +206,7 @@ const Home = () => {
           </TabsContent>
           <TabsContent value="Blog">
             <Card className=" flex flex-col p-4 py-3  flex-wrap shadow-none ">
-              <BlogCard />
+              <BlogCard blog={blog} />
             </Card>
           </TabsContent>
         </Tabs>
