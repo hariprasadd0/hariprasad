@@ -1,6 +1,6 @@
 const BLOG_URL =
   'https://raw.githubusercontent.com/hariprasadd0/Thoughtbin/refs/heads/main/data/journal.json';
-interface Blog {
+export interface Blog {
   title: string;
   description: string;
   date: string;
