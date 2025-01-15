@@ -63,7 +63,7 @@ const Home = () => {
 
   return (
     <Card className=" h-full outline-none shadow-none overflow-hidden rounded-none flex flex-col  items-center  md:flex-row gap-2 md:gap-16">
-      <div className=" md:px-10 px-6 md:pt-0 pt-10 flex  flex-col gap-1">
+      <section className=" md:px-10 px-6 md:pt-0 pt-10 flex  flex-col gap-1">
         <div className="flex gap-2 items-center mb-3 ">
           <Avatar className="w-12 h-12">
             <AvatarImage
@@ -210,7 +210,7 @@ const Home = () => {
             </Card>
           </TabsContent>
         </Tabs>
-      </div>
+      </section>
       {/* WORKS */}
       <div className=" flex md:h-screen md:mb-0 mb-8 justify-center items-center px-6">
         <div className="flex flex-col gap-5 items-center">
