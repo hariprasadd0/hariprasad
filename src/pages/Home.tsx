@@ -221,7 +221,7 @@ const Home = () => {
                 <DrawerTrigger asChild>
                   <Card className="card flex flex-col gap-4 p-4 rounded-sm  shadow-none  hover:shadow-md transition-shadow cursor-pointer ">
                     <div className="flex items-center space-x-3">
-                      <Avatar className="rounded-md w-12 h-12">
+                      <Avatar className="rounded-lg w-12 h-12">
                         <AvatarImage
                           alt="project"
                           src={item.icon}
@@ -253,7 +253,7 @@ const Home = () => {
                 <DrawerContent>
                   <DrawerHeader className="flex md:justify-between px-6  w-full  items-center ">
                     <DrawerTitle className="flex gap-6  items-center">
-                      <Avatar className="rounded-md w-20 h-20">
+                      <Avatar className="rounded-lg w-20 h-20">
                         <AvatarImage src={item.avatarSrc} />
                         <AvatarFallback>{item.avatarFallback}</AvatarFallback>
                       </Avatar>
@@ -341,13 +341,19 @@ const Home = () => {
                       <TabsContent value="caseStudy">
                         <Card className="w-full  shadow-none border-none">
                           <CardHeader className="border-b p-4">
+                            <div className="space-y-2">
+                              <h3 className="font-medium ">Tech Stack</h3>
+                              <p className="text-sm text-muted-foreground">
+                                {item?.tech.join('\t,')}
+                              </p>
+                            </div>
+                          </CardHeader>
+                          <CardContent className="p-4 flex flex-col gap-3">
                             <h3 className="text-xm font-medium">Description</h3>
 
                             <p className="text-sm text-muted-foreground md:w-3/4 leading-6">
                               {item?.description}
                             </p>
-                          </CardHeader>
-                          <CardContent className="p-4">
                             <div className="space-y-2">
                               <h3 className="font-medium">
                                 Problem & Solution
@@ -364,11 +370,6 @@ const Home = () => {
                                 <li>Vendor eco-certification</li>
                                 <li>User feedback on sustainability</li>
                               </ul>
-
-                              <h3 className="font-medium ">Tech Stack</h3>
-                              <p className="text-sm text-muted-foreground">
-                                React, Tailwind CSS, Node.js, MongoDB, Figma.
-                              </p>
                             </div>
                           </CardContent>
 

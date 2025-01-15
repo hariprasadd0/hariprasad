@@ -15,7 +15,7 @@ const items = [
     avatarFallback: 'EM',
     title: 'Ecomingle',
     context: 'Eco-conscious e-commerce platform',
-    tech: ['React', 'Tailwind CSS'],
+    tech: ['React', 'Tailwind', 'Material-UI', 'Node Js', 'MongoDB'],
     icon: EcoMingleLogo,
     description:
       'A sustainable e-commerce platform empowering eco-conscious shopping by offering verified eco-friendly products and fostering greener choices for a better planet',
@@ -31,7 +31,7 @@ const items = [
     title: 'Bintray',
     context: 'Eco-conscious e-commerce platform',
     tech: ['Next.js', 'Tailwind CSS'],
-    icon: EcoMingleLogo,
+    icon: 'https://github.com/shadcn.png',
     description:
       'Helped found the initial Booking.com Design System and its related services used on all Booking.com products. Currently, leading various efforts to further scale the system.',
     liveLink: '',
@@ -46,7 +46,7 @@ const items = [
     title: 'G-Cloud',
     context: 'Eco-conscious e-commerce platform',
     tech: ['Angular', 'Tailwind CSS', 'GO'],
-    icon: EcoMingleLogo,
+    icon: 'https://github.com/shadcn.png',
     description:
       'Helped found the initial Booking.com Design System and its related services used on all Booking.com products. Currently, leading various efforts to further scale the system.',
     liveLink: '',
