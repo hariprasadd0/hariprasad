@@ -217,9 +217,14 @@ const Home = () => {
           {works.map((item) => {
             const slides = item.carouselImg;
             return (
-              <Drawer key={item.id}>
-                <DrawerTrigger asChild>
-                  <Card className="card flex flex-col gap-4 p-4 rounded-sm  shadow-none  hover:shadow-md transition-shadow cursor-pointer ">
+              <div
+                key={item.id}
+                className={`${
+                  item.disabled ? 'pointer-events-none opacity-50' : ''
+                }`}
+              >
+                {item.disabled ? (
+                  <Card className="disabled:bg-slate-700 card flex flex-col gap-4 p-4 rounded-sm shadow-none">
                     <div className="flex items-center space-x-3">
                       <Avatar className="rounded-lg w-12 h-12">
                         <AvatarImage
@@ -230,173 +235,215 @@ const Home = () => {
                           {item.avatarFallback}
                         </AvatarFallback>
                       </Avatar>
-
-                      <div className="flex justify-between w-full items-center">
-                        <h2 className="text-lg font-medium ">{item.title}</h2>
+                      <div className="flex justify-between w-full items-center ">
+                        <h2 className="text-lg font-medium">{item.title}</h2>
                         <Button
                           variant="secondary"
-                          className="text-sm px-5 py-2 rounded-full  transition"
+                          className="text-sm px-5 py-2 rounded-full"
+                          disabled
                         >
-                          view
+                          In Progress
                         </Button>
                       </div>
                     </div>
-
                     <div className="px-2">
                       <p className="text-sm text-muted-foreground leading-relaxed">
                         {item.description}
                       </p>
                     </div>
                   </Card>
-                </DrawerTrigger>
+                ) : (
+                  <Drawer>
+                    <DrawerTrigger asChild>
+                      <Card className=" card flex flex-col gap-4 p-4 rounded-sm  shadow-none  hover:shadow-md transition-shadow cursor-pointer ">
+                        <div className="flex items-center space-x-3">
+                          <Avatar className="rounded-lg w-12 h-12">
+                            <AvatarImage
+                              alt="project"
+                              src={item.icon}
+                            />
+                            <AvatarFallback className="text-sm text-gray-500">
+                              {item.avatarFallback}
+                            </AvatarFallback>
+                          </Avatar>
 
-                <DrawerContent>
-                  <DrawerHeader className="flex md:justify-between px-6  w-full  items-center ">
-                    <DrawerTitle className="flex gap-6  items-center">
-                      <Avatar className="rounded-lg w-20 h-20">
-                        <AvatarImage src={item.avatarSrc} />
-                        <AvatarFallback>{item.avatarFallback}</AvatarFallback>
-                      </Avatar>
-
-                      <div className="flex flex-col gap-2 items-start">
-                        <h2 className="text-2xl font-medium ">{item.title}</h2>
-                        <p className="font-normal text-sm text-start text-muted-foreground">
-                          {item?.context}
-                        </p>
-                        <div className="flex  gap-3 p-1">
-                          <Link to={item.githubLink}>
+                          <div className="flex justify-between w-full items-center ">
+                            <h2 className="text-lg font-medium ">
+                              {item.title}
+                            </h2>
                             <Button
-                              size={'sm'}
-                              className="flex gap-2 "
+                              variant="secondary"
+                              className="text-sm px-5 py-2 rounded-full  transition"
                             >
-                              <FiGithub />
-                              View Project
+                              view
                             </Button>
-                          </Link>
-                          <Link to={item.liveLink}>
-                            <Button
-                              size={'sm'}
-                              variant={'outline'}
-                            >
-                              Live Preview
-                            </Button>
-                          </Link>
+                          </div>
                         </div>
-                      </div>
-                    </DrawerTitle>
 
-                    <DrawerClose className="hidden md:block">
-                      <Button
-                        variant="outline"
-                        className="shadow-none outline-none border-none px-2"
-                      >
-                        <X />
-                      </Button>
-                    </DrawerClose>
-                  </DrawerHeader>
-                  <Separator />
-                  <ScrollArea className="h-[90vh]">
-                    <Tabs
-                      className="px-3 py-3"
-                      defaultValue="overview"
-                    >
-                      <TabsList>
-                        <TabsTrigger
-                          className="text-xs"
-                          value="overview"
-                        >
-                          Overview
-                        </TabsTrigger>
-                        <TabsTrigger
-                          className="text-xs "
-                          value="caseStudy"
-                        >
-                          case study
-                        </TabsTrigger>
-                      </TabsList>
-                      <TabsContent value="overview">
-                        <div className=" p-4 mb-3 md:hidden flex flex-col gap-1 ">
-                          <h3 className="text-xm font-medium">Overview</h3>
-
-                          <p className="text-sm text-muted-foreground md:w-3/4 leading-6">
-                            {item?.description}
+                        <div className="px-2">
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            {item.description}
                           </p>
                         </div>
-                        <Carousel>
-                          <CarouselContent className="px-3">
-                            {slides.map((img, index) => (
-                              <CarouselItem key={index}>
-                                <img
-                                  src={img}
-                                  alt="Image"
-                                  className="rounded-xl border object-cover w-full aspect-auto md:aspect-video border-muted-foreground/20 data-[loading]:top-0"
-                                />
-                              </CarouselItem>
-                            ))}
-                          </CarouselContent>
-                          <CarouselPrevious />
-                          <CarouselNext />
-                        </Carousel>
-                      </TabsContent>
-                      <TabsContent value="caseStudy">
-                        <Card className="w-full  shadow-none border-none">
-                          <CardHeader className="border-b p-4">
-                            <div className="space-y-2">
-                              <h3 className="font-medium ">Tech Stack</h3>
-                              <p className="text-sm text-muted-foreground">
-                                {item?.tech.join('\t,')}
-                              </p>
-                            </div>
-                          </CardHeader>
-                          <CardContent className="p-4 flex flex-col gap-3">
-                            <h3 className="text-xm font-medium">Description</h3>
+                      </Card>
+                    </DrawerTrigger>
 
-                            <p className="text-sm text-muted-foreground md:w-3/4 leading-6">
-                              {item?.description}
+                    <DrawerContent>
+                      <DrawerHeader className="flex md:justify-between px-6  w-full  items-center ">
+                        <DrawerTitle className="flex gap-6  items-center">
+                          <Avatar className="rounded-lg w-20 h-20">
+                            <AvatarImage src={item.avatarSrc} />
+                            <AvatarFallback>
+                              {item.avatarFallback}
+                            </AvatarFallback>
+                          </Avatar>
+
+                          <div className="flex flex-col gap-2 items-start">
+                            <h2 className="text-2xl font-medium pt-3">
+                              {item.title}
+                            </h2>
+                            <p className="font-normal text-sm text-start text-muted-foreground">
+                              {item?.context}
                             </p>
-                            <div className="space-y-2">
-                              <h3 className="font-medium">
-                                Problem & Solution
-                              </h3>
-                              <p className="text-sm text-muted-foreground">
-                                Shoppers lacked tools to make environmentally
-                                informed choices. EcoMingle bridges this gap by
-                                displaying the carbon footprint of products.
-                              </p>
-
-                              <h3 className="font-medium ">Features</h3>
-                              <ul className="list-disc list-inside text-sm text-muted-foreground">
-                                <li>Carbon footprint calculator</li>
-                                <li>Vendor eco-certification</li>
-                                <li>User feedback on sustainability</li>
-                              </ul>
+                            <div className="flex  gap-3 p-1">
+                              <Link to={item.githubLink}>
+                                <Button
+                                  size={'sm'}
+                                  className="flex gap-2 "
+                                >
+                                  <FiGithub />
+                                  View Project
+                                </Button>
+                              </Link>
+                              <Link to={item.liveLink}>
+                                <Button
+                                  size={'sm'}
+                                  variant={'outline'}
+                                >
+                                  Live Preview
+                                </Button>
+                              </Link>
                             </div>
-                          </CardContent>
+                          </div>
+                        </DrawerTitle>
 
-                          <CardFooter className="p-4 flex items-center justify-between border-t">
-                            <Link to={item.liveLink}>
-                              <Button
-                                variant="outline"
-                                size="sm"
-                              >
-                                Live Demo
-                              </Button>
-                            </Link>
-                            <Link to={item.githubLink}>
-                              <Button
-                                variant="default"
-                                size="sm"
-                              >
-                                View Code
-                              </Button>
-                            </Link>
-                          </CardFooter>
-                        </Card>
-                      </TabsContent>
-                    </Tabs>
-                  </ScrollArea>
-                </DrawerContent>
-              </Drawer>
+                        <DrawerClose className="hidden md:block">
+                          <Button
+                            variant="outline"
+                            className="shadow-none outline-none border-none px-2"
+                          >
+                            <X />
+                          </Button>
+                        </DrawerClose>
+                      </DrawerHeader>
+                      <Separator />
+                      <ScrollArea className="h-[90vh]">
+                        <Tabs
+                          className="px-3 py-3"
+                          defaultValue="overview"
+                        >
+                          <TabsList>
+                            <TabsTrigger
+                              className="text-xs"
+                              value="overview"
+                            >
+                              Overview
+                            </TabsTrigger>
+                            <TabsTrigger
+                              className="text-xs "
+                              value="caseStudy"
+                            >
+                              case study
+                            </TabsTrigger>
+                          </TabsList>
+                          <TabsContent value="overview">
+                            <div className=" p-4 mb-3 md:hidden flex flex-col gap-1 ">
+                              <h3 className="text-xm font-medium">Overview</h3>
+
+                              <p className="text-sm text-muted-foreground md:w-3/4 leading-6">
+                                {item?.description}
+                              </p>
+                            </div>
+                            <Carousel>
+                              <CarouselContent className="px-3">
+                                {slides.map((img, index) => (
+                                  <CarouselItem key={index}>
+                                    <img
+                                      src={img}
+                                      alt="Image"
+                                      className="rounded-xl border object-cover w-full aspect-auto md:aspect-video border-muted-foreground/20 data-[loading]:top-0"
+                                    />
+                                  </CarouselItem>
+                                ))}
+                              </CarouselContent>
+                              <CarouselPrevious />
+                              <CarouselNext />
+                            </Carousel>
+                          </TabsContent>
+                          <TabsContent value="caseStudy">
+                            <Card className="w-full  shadow-none border-none">
+                              <CardHeader className="border-b p-4">
+                                <div className="space-y-2">
+                                  <h3 className="font-medium ">Tech Stack</h3>
+                                  <p className="text-sm text-muted-foreground">
+                                    {item?.tech.join('\t,')}
+                                  </p>
+                                </div>
+                              </CardHeader>
+                              <CardContent className="p-4 flex flex-col gap-4">
+                                <h3 className="text-xm font-medium">
+                                  Description
+                                </h3>
+
+                                <p className="text-sm text-muted-foreground md:w-3/4 leading-6">
+                                  {item?.description}
+                                </p>
+                                <div className="space-y-2 ">
+                                  <h3 className="font-medium">
+                                    Problem & Solution
+                                  </h3>
+                                  <p className="text-sm text-muted-foreground">
+                                    {item?.problem_solution}
+                                  </p>
+
+                                  <h3 className="font-medium ">Features</h3>
+                                  {item?.features?.map((item, index) => (
+                                    <ul
+                                      key={index}
+                                      className="list-disc list-inside text-sm text-muted-foreground"
+                                    >
+                                      <li>{item}</li>
+                                    </ul>
+                                  ))}
+                                </div>
+                              </CardContent>
+
+                              <CardFooter className="p-4 flex items-center justify-between border-t">
+                                <Link to={item.liveLink}>
+                                  <Button
+                                    variant="outline"
+                                    size="sm"
+                                  >
+                                    Live Demo
+                                  </Button>
+                                </Link>
+                                <Link to={item.githubLink}>
+                                  <Button
+                                    variant="default"
+                                    size="sm"
+                                  >
+                                    View Code
+                                  </Button>
+                                </Link>
+                              </CardFooter>
+                            </Card>
+                          </TabsContent>
+                        </Tabs>
+                      </ScrollArea>
+                    </DrawerContent>
+                  </Drawer>
+                )}
+              </div>
             );
           })}
         </div>
