@@ -5,6 +5,7 @@ import {
   Ecomingle01,
   Ecomingle02,
   Ecomingle03,
+  codora,
 } from '@/assets/workImg';
 
 const items = [
@@ -19,38 +20,44 @@ const items = [
     icon: EcoMingleLogo,
     description:
       'A sustainable e-commerce platform empowering eco-conscious shopping by offering verified eco-friendly products and fostering greener choices for a better planet',
+    problem_solution:
+      'Shoppers lacked tools to make environmentally informed choices. EcoMingle bridges this gap by displaying the carbon footprint of products.',
+    features: ['Carbon footprint calculator', 'Vendor eco-certification'],
     liveLink: 'https://eco-mingle.vercel.app/dashboard',
     githubLink: 'https://github.com/hariprasadd0/EcoMingle',
+    disabled: false,
   },
 
   {
     id: 2,
-    avatarSrc: 'https://github.com/shadcn.png',
+    avatarSrc: codora,
     carouselImg: [img2],
-    avatarFallback: 'CN',
-    title: 'Bintray',
-    context: 'Eco-conscious e-commerce platform',
-    tech: ['Next.js', 'Tailwind CSS'],
-    icon: 'https://github.com/shadcn.png',
+    avatarFallback: 'C',
+    title: 'Codora',
+    context: 'Project Manager for indies and small teams',
+    tech: ['Node js '],
+    icon: codora,
     description:
-      'Helped found the initial Booking.com Design System and its related services used on all Booking.com products. Currently, leading various efforts to further scale the system.',
+      ' A project management tool designed for indie developers and small teams, offering streamlined task tracking and efficient project organization. ',
     liveLink: '',
-    githubLink: '',
+    githubLink: 'https://github.com/hariprasadd0/codora',
+    disabled: false,
   },
 
   {
     id: 3,
-    avatarSrc: 'https://github.com/shadcn.png',
+    avatarSrc: '',
     carouselImg: [img3],
-    avatarFallback: 'CN',
-    title: 'G-Cloud',
+    avatarFallback: 'T T',
+    title: 'TinyTailor',
     context: 'Eco-conscious e-commerce platform',
     tech: ['Angular', 'Tailwind CSS', 'GO'],
-    icon: 'https://github.com/shadcn.png',
+    icon: '',
     description:
-      'Helped found the initial Booking.com Design System and its related services used on all Booking.com products. Currently, leading various efforts to further scale the system.',
+      'A lightweight and easy-to-use tailoring management system designed for small tailoring businesses. It simplifies order tracking, measurement handling, and customer management',
     liveLink: '',
     githubLink: '',
+    disabled: true,
   },
 ];
 
