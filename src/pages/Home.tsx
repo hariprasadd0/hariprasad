@@ -71,7 +71,7 @@ const Home = () => {
               className="object-cover align-bottom "
               src={userLogo}
             />
-            <AvatarFallback>VC</AvatarFallback>
+            <AvatarFallback>HP</AvatarFallback>
           </Avatar>{' '}
           <h1 className="text-3xl md:text-3xl font-medium ">Hariprasad</h1>
         </div>
