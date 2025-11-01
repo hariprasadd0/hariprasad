@@ -7,9 +7,7 @@ import rehypeSanitize from 'rehype-sanitize';
 import { TbArrowBack } from "react-icons/tb";
 import { loadMarkdownFiles, BlogPost } from '@/utils/loadMarkdown';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
-import {dracula} from 'react-syntax-highlighter/dist/cjs/styles/prism'
-import remarkToc from 'remark-toc';
-import { log } from 'console';
+import {dracula} from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 const BlogPostPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -42,7 +40,7 @@ const BlogPostPage = () => {
         const foundPost = posts.find(p => p.slug === slug);
         setPost(foundPost || null);
       } catch (error) {
-        console.error('Error loading blog post:', error);
+         console.error('Error loading blog post:', error);
       } finally {
         setLoading(false);
       }
@@ -115,16 +113,15 @@ const BlogPostPage = () => {
               );
             },
             // Style code blocks
-           code({ node, inline, className, children: codeChildren, ...props }) {
+           code({ node, inline, className, children: codeChildren, ...props }:any) {
             
           const match = /language-(\w+)/.exec(className || "");
 
           return !inline && match ? (
             <SyntaxHighlighter
-              style={dracula}
+              style={dracula }
               PreTag="div"
               language={match[1]}
-              {...props}
             >
               {String(codeChildren).replace(/\n$/, "")}
             </SyntaxHighlighter>

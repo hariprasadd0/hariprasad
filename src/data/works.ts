@@ -1,5 +1,4 @@
 import {
-  img2,
   img3,
   EcoMingleLogo,
   Ecomingle01,

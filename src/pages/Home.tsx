@@ -210,7 +210,7 @@ const categoryCount = blogPosts.reduce<Record<string, number>>((countObj, post) 
                         <h2 className="text-lg font-medium">{item.title}</h2>
                         <Button
                           variant="secondary"
-                          className="text-sm px-5 py-2 rounded-full"
+                          className=" hidden md:block text-xs px-3 py-1 rounded-full"
                           disabled
                         >
                           In Progress
