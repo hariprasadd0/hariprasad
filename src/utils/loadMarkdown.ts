@@ -24,11 +24,8 @@ export const loadMarkdownFiles = async (): Promise<BlogPost[]> => {
     eager: true 
   });
 
-  console.log('Markdown files found:', Object.keys(markdownFiles));
-  console.log('Total files:', Object.keys(markdownFiles).length);
 
   for (const [path, content] of Object.entries(markdownFiles)) {
-    console.log('Processing file:', path);
     const { data, content: markdownContent } = matter(content as string);
     
     // Extract folder number as ID from path (e.g., /src/data/journals/1/file.md -> "1")
@@ -39,7 +36,7 @@ export const loadMarkdownFiles = async (): Promise<BlogPost[]> => {
     const filename = path.split('/').pop()?.replace('.md', '') || '';
     const slug = filename.toLowerCase().replace(/\s+/g, '-').replace(/[()]/g, '');
     
-    console.log('Parsed post:', { id, title: data.title || filename, slug });
+    
     
     posts.push({
       id,
@@ -55,6 +52,5 @@ export const loadMarkdownFiles = async (): Promise<BlogPost[]> => {
     });
   }
 
-  console.log('Total posts loaded:', posts.length);
   return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 };
