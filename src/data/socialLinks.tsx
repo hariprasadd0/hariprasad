@@ -1,7 +1,6 @@
 import { FiLinkedin, FiGithub } from 'react-icons/fi';
 import { BsTwitterX } from 'react-icons/bs';
 
-import { IoMailOutline } from 'react-icons/io5';
 
 const socialLinks = [
   {
