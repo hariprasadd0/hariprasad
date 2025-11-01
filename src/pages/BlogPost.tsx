@@ -100,6 +100,8 @@ const BlogPostPage = () => {
               // If image path is relative, prepend the journals folder path
               const imageSrc = src.startsWith('http')
                 ? src
+                :src.startsWith('/')
+                ? src
                 : `/src/data/journals/${post.id}/${src}`;
 
               return (
