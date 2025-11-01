@@ -444,7 +444,7 @@ const categoryCount = blogPosts.reduce<Record<string, number>>((countObj, post) 
               {blogPosts.map((item) => (
                 <Card
                   key={item.id}
-                  onClick={() => navigate(`/blog/${item.slug}`)}
+                  onClick={() => navigate(`/${item.slug}`)}
                   className="flex flex-col gap-4 p-3 rounded-sm shadow-none hover:shadow-md transition-shadow cursor-pointer w-full h-full"
                 >
                   <div className="flex flex-col h-full gap-2">
@@ -467,7 +467,7 @@ const categoryCount = blogPosts.reduce<Record<string, number>>((countObj, post) 
                 {blogPosts.filter(post => post.category === category).map((item) => (
                   <Card
                     key={item.id}
-                    onClick={() => navigate(`/blog/${item.slug}`)}
+                    onClick={() => navigate(`/${item.slug}`)}
                     className="flex flex-col gap-4 p-3 rounded-sm shadow-none hover:shadow-md transition-shadow cursor-pointer w-full h-full"
                   >
                     <div className="flex flex-col h-full gap-2">
