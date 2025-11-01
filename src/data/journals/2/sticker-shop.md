@@ -45,17 +45,17 @@ The scan revealed two open ports:
 
 Upon visiting `http://10.10.181.208:8080`, the homepage displayed two stickers and their respective prices.
 
-![Homepage](./images/home.png)
+![Homepage](/images/home.png)
 
 Efforts to access the **flag** at `/flag.txt` returned a **401 Unauthorized** status, indicating that the flag was secured and could not be accessed directly.
 
-![Unauthorized](./images/unauth.png)
+![Unauthorized](/images/unauth.png)
 
 ---
 
 ## Feedback Form and XSS Testing
 
-![feedback](./images/feedback.png)
+![feedback](/images/feedback.png)
 
 The application features a feedback form that allows users to submit comments. To test for **Cross-Site Scripting (XSS)** vulnerabilities, a simple payload was injected:
 
@@ -78,7 +78,7 @@ This confirmed that the site was vulnerable to XSS, as the payload was executed 
 
 ## Exploiting XSS to Steal Flag
 
-![xss](./images/query.png)
+![xss](/images/query.png)
 
 The input field was vulnerable to XSS, allowing the injection of a JavaScript payload to fetch the contents of the `/flag.txt` file. Since only GET requests were allowed, the flag could not be directly posted but could be fetched and sent via a redirect.
 

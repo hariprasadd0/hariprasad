@@ -9,7 +9,7 @@ readTime: "5 min"
 
 
 ## Portal to Kernel (A Beginner's POV)
-<img src="./pk.svg" alt="pk" />
+<img src="/public/images/pk.svg" alt="pk" />
 
 When I first discovered [**eBPF**](https://ebpf.io/what-is-ebpf/) aka *"Extended Berkeley Packet Filter"*, my curiosity reached its peak. I’ve always been fascinated by operating systems, but I never imagined I could explore their inner workings so deeply — at least not without diving into complex `.ko` modules.
 
@@ -19,7 +19,7 @@ eBPF has been part of the Linux ecosystem for years, quietly transforming how de
 
 It is essentially a restricted form of C - we write programs in familiar C like syntax , but they're compiled into special bytecode that runs safely inside the kernel. But how does a simple C program get permission to interact with kernel ? 
 
-<img src="./ebpf.png" alt="ebpf" />
+<img src="/public/images/ebpf.png" alt="ebpf" />
 
 The source `hello.c` is compiled using `clang` to an eBPF bytecode, stored inside an `ELF` object file. Then a loader (like `bpftool` or `libbpf`) calls the `bpf()` syscall with the command `BPF_PROG_LOAD`, which loads the object file into the kernel.
 
@@ -51,7 +51,7 @@ As our program is running inside the kernel the program cannot directly `printf(
 eBPF maps can be used to store and retrieve collected information from both kernel and user space . Maps are special memory regions managed by the kernel. There are several types we could use for eg:- `Hash Tables` ,
 `LRU` , `Array` , `Ring Buffer` etc. 
 
-<img src="./ebpfmap.png" alt="ebpfmap" />
+<img src="/public/images/ebpfmap.png" alt="ebpfmap" />
 
 
 ---
