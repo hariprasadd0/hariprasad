@@ -42,12 +42,7 @@ const Timeline = ({ data }: TimelineProps) => {
                     {item.current ? (
                       <>
                         <h3 className="font-medium text-sm">{item.title}</h3>
-                        <Badge
-                          variant="secondary"
-                          className="text-xs font-normal"
-                        >
-                          Current
-                        </Badge>
+                        
                       </>
                     ) : (
                       <h3 className="font-medium text-sm text-muted-foreground">
@@ -76,7 +71,7 @@ const Timeline = ({ data }: TimelineProps) => {
                     <Badge
                       key={skill}
                       variant="outline"
-                      className="text-xs font-normal px-2 py-0"
+                      className="text-xs font-normal px-2 py-0.5"
                     >
                       {skill}
                     </Badge>

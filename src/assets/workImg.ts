@@ -5,8 +5,8 @@ import EcoMingleLogo from './images/EcoLogo.svg';
 import Ecomingle01 from './images/EcoMingle01.webp';
 import Ecomingle02 from './images/Ecomingle02.webp';
 import Ecomingle03 from './images/EcoMingle03.webp';
-import codora from './images/codora.svg';
-
+import Lupin from './images/Lupin.svg';
+import LupinScreen1 from './images/lupinScreen.png'
 import FreelanceLogo from './images/Logo.png';
 import userLogo from './images/user.webp';
 
@@ -20,5 +20,6 @@ export {
   Ecomingle03,
   FreelanceLogo,
   userLogo,
-  codora,
+  Lupin,
+  LupinScreen1
 };

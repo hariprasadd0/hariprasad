@@ -1,4 +1,4 @@
-import { Card, CardContent } from './ui/card';
+import { Card, CardContent, CardHeader, CardFooter } from './ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Button } from './ui/button';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
@@ -36,6 +36,8 @@ import Tech from './Tech';
 export {
   Card,
   CardContent,
+  CardHeader,
+  CardFooter,
   Avatar,
   AvatarFallback,
   AvatarImage,

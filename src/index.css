@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Quicksand:wght@300..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@100..900&family=Saira:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -55,7 +55,7 @@
   * {
     @apply border-border;
     outline: none;
-    font-family: 'Figtree', sans-serif;
+    font-family: 'Onest', sans-serif;
     scroll-behavior: smooth;
   }
   body {
@@ -65,3 +65,4 @@
     width: 0px;
   }
 }
+

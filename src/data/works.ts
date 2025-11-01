@@ -5,7 +5,8 @@ import {
   Ecomingle01,
   Ecomingle02,
   Ecomingle03,
-  codora,
+  Lupin,
+  LupinScreen1
 } from '@/assets/workImg';
 
 const items = [
@@ -30,17 +31,17 @@ const items = [
 
   {
     id: 2,
-    avatarSrc: codora,
-    carouselImg: [img2],
+    avatarSrc: Lupin,
+    carouselImg: [LupinScreen1,'',''],
     avatarFallback: 'C',
-    title: 'Codora',
+    title: 'Lupin',
     context: 'Project Manager for indies and small teams',
-    tech: ['Node js '],
-    icon: codora,
+    tech: ['Node js', 'TypeScript', 'Shadcn', 'PostgreSQL'],
+    icon: Lupin,
     description:
       ' A project management tool designed for indie developers and small teams, offering streamlined task tracking and efficient project organization. ',
     liveLink: '',
-    githubLink: 'https://github.com/hariprasadd0/codora',
+    githubLink: 'https://github.com/hariprasadd0/lupin',
     disabled: false,
   },
 

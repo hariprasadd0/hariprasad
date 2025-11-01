@@ -1,35 +1,34 @@
-export const experience = [
+export type ExperienceItem = {
+  title: string;
+  company: string;
+  duration: string;
+  link?: string;
+  skills: string[];
+  current: boolean;
+};
+
+export const experience: ExperienceItem[] = [
   {
     title: 'Software Engineer Intern',
-    company: 'Tech Innovations Pvt. Ltd.',
-    duration: 'June 2023 - August 2023',
+    company: 'xmigrate',
+    duration: 'June 2025 - Present',
+    link: 'https://xmigrate.cloud',
     skills: [
-      'Python',
-      'PostgreSQL',
-      'Data Structures & Algorithms',
-      'Java',
-      'C#',
-      'Web Development',
-      'Networking',
-      'API Development',
-      'Version Control (Git)',
+      'python',
+      'postgresql',
+      'golang',
+      'nextjs',
     ],
     current: true,
   },
   {
-    title: 'Junior Developer',
-    company: 'Innovative Solutions Ltd.',
-    duration: 'December 2022 - May 2023',
+    title: 'Freelancer',
+    company: 'Self',
+    duration: 'March 2024 - Present',
+    link: '',
     current: false,
-    skills: [
-      'HTML',
-      'C++',
-      'JavaScript',
-      'Basic Programming',
-      'Problem Solving',
-      'Database Management',
-    ],
+    skills: ['Web Development', 'UI/UX',],
   },
 ];
 
-export const experienceStatus = false;
+export const experienceStatus = true;

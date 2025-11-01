@@ -1,28 +1,42 @@
-import { Card } from './components';
+import { Card } from "@/components/ui/card"
+import { useNavigate } from "react-router-dom";
+
 type Blog = {
+  id: string;
   title: string;
   description: string;
-  url: string;
+  category: string;
+  readTime: string;
+  date: string;
+  author: string;
+  imageUrl?: string;
+  slug: string;
 };
+
 type BlogCardProps = {
-  blog: Blog[];
+  blog: Blog;
 };
+
 const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
+  const navigate = useNavigate();
+  
+  const handleClick = () => {
+    navigate(`/blog/${blog.slug}`);
+  };
+
   return (
-    <div className="flex flex-col gap-2">
-      {blog.map((item, index) => (
-        <Card
-          className="p-2 rounded-sm cursor-pointer w-full flex flex-col gap-1 hover:-translate-y-1 transition duration-200 ease-in-out"
-          key={index}
-          onClick={() => window.open(`${item.url}`, '_blank')}
-        >
-          <h1 className="font-semibold">{item.title}</h1>
-          <span className="text-muted-foreground text-sm">
-            {item.description}
-          </span>
-        </Card>
-      ))}
-    </div>
+    <Card 
+      className="cursor-pointer shadow-none border-none p-4 hover:bg-muted/50 transition-colors w-full"
+      onClick={handleClick}
+    >
+      <div className="flex flex-col gap-3 w-full">
+        <span className="text-sm text-muted-foreground">{blog.date}</span>
+        <h3 className="font-medium text-xl leading-tight">{blog.title}</h3>
+        {blog.description && (
+          <p className="text-sm text-muted-foreground line-clamp-2">{blog.description}</p>
+        )}
+      </div>
+    </Card>
   );
 };
 

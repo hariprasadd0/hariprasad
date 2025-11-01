@@ -26,12 +26,12 @@ const socialLinks = [
     ariaLabel: 'github',
   },
 
-  {
-    id: 5,
-    name: 'Email',
-    link: 'mailto:hariprasadkv02@gmail.com',
-    icon: <IoMailOutline size={18} />,
-  },
+  // {
+  //   id: 5,
+  //   name: 'Email',
+  //   link: 'mailto:hariprasadkv02@gmail.com',
+  //   icon: <IoMailOutline size={18} />,
+  // },
 ];
 
 export default socialLinks;
