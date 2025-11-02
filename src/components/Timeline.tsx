@@ -4,6 +4,7 @@ type TimelineItem = {
   current: boolean;
   title: string;
   company: string;
+  companyLogo?: string;
   duration?: string;
   skills?: string[];
 };
@@ -52,7 +53,15 @@ const Timeline = ({ data }: TimelineProps) => {
                   </div>
 
                   {/* Company */}
-                  <p className="text-xs text-muted-foreground mt-0.5">
+                  <div className="flex items-center gap-1 mt-1">
+                     {item.companyLogo && (
+                      <img
+                        src={item.companyLogo}
+                        alt={item.company}
+                        className="w-5 h-5 filter grayscale saturate-0"
+                      />
+                    )}
+                    <p className="text-xs text-muted-foreground">
                     {item.company}
                     {item.duration && (
                       <span className="text-muted-foreground/60">
@@ -63,6 +72,7 @@ const Timeline = ({ data }: TimelineProps) => {
                   </p>
                 </div>
               </div>
+              </div>
 
               {/* Skills */}
               {item.skills && (
@@ -71,7 +81,7 @@ const Timeline = ({ data }: TimelineProps) => {
                     <Badge
                       key={skill}
                       variant="outline"
-                      className="text-xs font-normal px-2 py-0.5"
+                      className="text-xs font-normal px-2 py-0.5 text-muted-foreground"
                     >
                       {skill}
                     </Badge>

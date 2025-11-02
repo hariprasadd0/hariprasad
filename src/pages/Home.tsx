@@ -48,6 +48,7 @@ import { getIcon } from '@/lib/icons';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { BlogPost, loadMarkdownFiles } from '@/utils/loadMarkdown';
+import Footer from './Footer';
 
 const Home = () => {
 
@@ -81,21 +82,21 @@ const categoryCount = blogPosts.reduce<Record<string, number>>((countObj, post) 
 
 
   return (
-    <Card className="h-full outline-none shadow-none overflow-hidden rounded-none flex flex-col  items-center  p-6 md:p-16 gap-4 md:gap-10">
+    <Card className="h-full outline-none shadow-none overflow-hidden rounded-none flex flex-col  items-center  p-6 pb-8 md:p-16 md:pb-8 gap-4 md:gap-10">
       <section className="max-w-xl flex  flex-col gap-1">
         <div className="flex gap-2 items-center mb-3 ">
           <h1 className="text-xl md:text-2xl font-medium ">Hey, I'm Hariprasad</h1>
         </div>
 
         <HoverCard>
-          <p className="text-sm sm:text-base md:text-md leading-6 md:leading-8 text-muted-foreground mb-6">
-            A{' '} generalist{' '}
+          <p className="text-sm sm:text-base md:text-md leading-6 md:leading-7 text-muted-foreground mb-6">
+            A generalist{' '}
             <HoverCardTrigger asChild>
               <span className=" cursor-pointer px-1.5 text-primary/80 underline underline-offset-2 font-medium ">
                 Engineer              
               </span>
             </HoverCardTrigger>
-            who loves learning new things about core backend systems, and security. Most of the time, I’m exploring technical papers or building projects to put ideas into practice.
+          passionate about backend systems and security. I enjoy diving into technical papers and building projects that bring concepts to life.
           </p>
 
           <HoverCardContent className="w-80">
@@ -156,9 +157,9 @@ const categoryCount = blogPosts.reduce<Record<string, number>>((countObj, post) 
               className="text-xs"
               value="Experience"
             >
-              Experience
+              Background
             </TabsTrigger>
-            {experienceStatus ? (
+            {eduData.length > 0 ? (
               <TabsTrigger
                 className="text-xs"
                 value="Education"
@@ -177,9 +178,13 @@ const categoryCount = blogPosts.reduce<Record<string, number>>((countObj, post) 
           ) : (
             <></>
           )}
-          <TabsContent value="Education">
-            <Timeline data={eduData} />
-          </TabsContent>
+          {eduData.length > 0 ? (
+            <TabsContent value="Education">
+              <Timeline data={eduData} />
+            </TabsContent>
+          ) : (
+            <></>
+          )}
         </Tabs>
       </section>
       {/* WORKS */}
@@ -226,10 +231,10 @@ const categoryCount = blogPosts.reduce<Record<string, number>>((countObj, post) 
                 ) : (
                   <Drawer>
                     <DrawerTrigger asChild>
-                      <Card className="  flex flex-col gap-4 p-4 rounded-sm  shadow-none  hover:shadow-md transition-shadow cursor-pointer w-full">
-                        <img src={slides[0]} alt="" />
-                        <div className="flex items-center space-x-3">
-                          <Avatar className="rounded-lg w-10 h-10">
+                      <Card className="  flex flex-col gap-4 p-4 rounded-sm  shadow-none  hover:shadow-md transition-shadow cursor-pointer w-full h-full">
+                        <img src={slides[0]} alt="" className='rounded-[4px]'/>
+                        <div className="flex items-center space-x-2 justify-between w-full">
+                          <Avatar className="rounded-sm w-8 h-8 border">
                             <AvatarImage
                               alt="project"
                               src={item.icon}
@@ -244,10 +249,31 @@ const categoryCount = blogPosts.reduce<Record<string, number>>((countObj, post) 
                               {item.title}
                             </h2>
                           </div>
+                          <div className="flex items-center gap-1">
+                            <span
+                              onClick={(ev) =>{
+                                ev.stopPropagation();
+                                window.open(item.liveLink, '_blank')
+                              }}
+                              className="text-xs p-1 dark:bg-muted rounded-[4px] cursor-pointer"
+                            >
+                              Live
+                            </span>
+                            <span className="text-xs text-gray-500 ">|</span>
+                            <span
+                              onClick={(ev) => {
+                                ev.stopPropagation();
+                                window.open(item.githubLink, '_blank')
+                              }}
+                              className="text-xs p-1 dark:bg-muted rounded-[4px] cursor-pointer"
+                            >
+                              GitHub
+                            </span>
+                          </div>
                         </div>
 
-                        <div className="px-2">
-                          <p className="text-sm text-muted-foreground truncate">
+                        <div className="max-w-prose mx-auto flex-1">
+                          <p className="text-xs text-muted-foreground text-left leading-relaxed line-clamp-3">
                             {item.description}
                           </p>
                         </div>
@@ -448,12 +474,12 @@ const categoryCount = blogPosts.reduce<Record<string, number>>((countObj, post) 
                   className="flex flex-col gap-4 p-3 rounded-sm shadow-none hover:shadow-md transition-shadow cursor-pointer w-full h-full"
                 >
                   <div className="flex flex-col h-full gap-2">
-                    <Badge className={`flex justify-between ${item.readTime ? 'w-full' : 'w-fit'}`}>
+                    <Badge className={`flex justify-between  bg-transparent hover:bg-transparent shadow-none text-muted-foreground p-0 font-medium  ${item.readTime ? 'w-full' : 'w-fit'}`}>
                       <p>{item.date}</p>
                       <p>{item.readTime}</p>
                     </Badge>
                     <h6 className="text-md font-medium mt-2">{item.title}</h6>
-                    <p className="text-sm text-muted-foreground mt-1 line-clamp-2 flex-grow">
+                    <p className="text-xs text-muted-foreground mt-1 line-clamp-3 flex-grow">
                       {item.description}
                     </p>
                   </div>
@@ -471,12 +497,12 @@ const categoryCount = blogPosts.reduce<Record<string, number>>((countObj, post) 
                     className="flex flex-col gap-4 p-3 rounded-sm shadow-none hover:shadow-md transition-shadow cursor-pointer w-full h-full"
                   >
                     <div className="flex flex-col h-full gap-2">
-                      <Badge className={`flex justify-between ${item.readTime ? 'w-full' : 'w-fit'}`}>
+                      <Badge className={`flex justify-between bg-transparent shadow-none hover:bg-transparent text-muted-foreground p-0 font-medium  ${item.readTime ? 'w-full' : 'w-fit'}`}>
                         <p>{item.date}</p>
                         <p>{item.readTime}</p>
                       </Badge>
                       <h6 className="text-md font-medium mt-2">{item.title}</h6>
-                      <p className="text-sm text-muted-foreground mt-1 line-clamp-2 flex-grow">
+                      <p className="text-xs text-muted-foreground mt-1 line-clamp-3 flex-grow">
                         {item.description}
                       </p>
                     </div>
@@ -487,6 +513,7 @@ const categoryCount = blogPosts.reduce<Record<string, number>>((countObj, post) 
           ))}
         </Tabs>
       </section>
+      <Footer />
     </Card>
   );
 };

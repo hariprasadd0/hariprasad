@@ -109,7 +109,7 @@ const BlogPostPage = () => {
                   {...props}
                   src={imageSrc}
                   alt={props.alt || ''}
-                  className="rounded-lg my-4"
+                  className="rounded-sm my-4 dark:bg-white"
                   loading="lazy"
                 />
               );

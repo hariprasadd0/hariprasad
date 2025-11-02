@@ -1,7 +1,8 @@
 export const eduData = [
   {
     title: 'Bachelor of Computer Applications',
-    company: 'ITM College of Arts & Science',
+    company: 'Kannur University',
+    companyLogo: 'https://www.knrutykalotsavam.com/_next/image/?url=https%3A%2F%2Fkalotsavam.sgp1.cdn.digitaloceanspaces.com%2Fassets%2Fkannur-univ-logo.png&w=256&q=75',
     duration: '2021 - 2024',
     skills: [
       'Python',

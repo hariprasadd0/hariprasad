@@ -1,6 +1,7 @@
 export type ExperienceItem = {
   title: string;
   company: string;
+  companyLogo?: string;
   duration: string;
   link?: string;
   skills: string[];
@@ -11,6 +12,7 @@ export const experience: ExperienceItem[] = [
   {
     title: 'Software Engineer Intern',
     company: 'xmigrate',
+    companyLogo: 'https://xmigrate.cloud/icons/logo.svg',
     duration: 'June 2025 - Present',
     link: 'https://xmigrate.cloud',
     skills: [
