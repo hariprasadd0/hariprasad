@@ -13,7 +13,7 @@ type TimelineProps = {
 };
 const Timeline = ({ data }: TimelineProps) => {
   return (
-    <div className="space-y-5 pt-2 pb-6 md:pb-8 lg:pb-12">
+    <div className="space-y-5 pt-2 pb-3 p-2">
       {' '}
       {/* Added responsive padding at the bottom */}
       {data.map((item, index) => (
@@ -83,9 +83,9 @@ const Timeline = ({ data }: TimelineProps) => {
                       variant="outline"
                       className="text-xs font-normal px-2 py-0.5 text-muted-foreground"
                     >
-                      {skill}
+                      {skill.toLowerCase()}
                     </Badge>
-                  ))}
+                  ))} 
                 </div>
               )}
             </div>

@@ -6,6 +6,7 @@ import { RiTailwindCssFill, RiNextjsFill } from 'react-icons/ri';
 import { SiAngular, SiMui, SiGo, SiShadcnui } from 'react-icons/si';
 import { IconType } from 'react-icons';
 import { AiOutlinePython } from "react-icons/ai";
+import { GithubLogoIcon, LinkedinLogoIcon, WarningCircleIcon, XLogoIcon } from "@phosphor-icons/react";
 
 export interface IconItem {
   name: string;
@@ -29,39 +30,47 @@ export const icons: IconItem[] = [
   { name: 'Go', Icon: SiGo, category: 'tech', aliases: ['go', 'golang'] },
   { name: 'Shadcn/UI', Icon: SiShadcnui, category: 'tech', aliases: ['shadcn', 'shadcn/ui', 'shadcnui'] },
   { name: 'Python', Icon: AiOutlinePython, category: 'tech', aliases: ['python'] },
+  
+  // Utility icons
+  { name: 'WarningCircle', Icon: WarningCircleIcon, category: 'utility', aliases: ['warning circle', 'warning', 'warning-circle'] },
+  
+  // Social Media Icons
+  { name: 'GitHub', Icon: GithubLogoIcon, category: 'social', aliases: ['github', 'git hub'] },
+  { name: 'LinkedIn', Icon: LinkedinLogoIcon, category: 'social', aliases: ['linkedin', 'linked in'] },
+  { name: 'X', Icon: XLogoIcon, category: 'social', aliases: ['x', 'twitter', 'x twitter'] },
 ];
 
-// Helper function to get icon by name (case insensitive and checks aliases)
+const iconLookupMap = new Map<string, IconType>();
+const iconItemLookupMap = new Map<string, IconItem>();
+
+icons.forEach(iconItem => {
+  const normalizedName = iconItem.name.toLowerCase().trim();
+  iconLookupMap.set(normalizedName, iconItem.Icon);
+  iconItemLookupMap.set(normalizedName, iconItem);
+  
+  iconItem.aliases?.forEach(alias => {
+    const normalizedAlias = alias.toLowerCase().trim();
+    iconLookupMap.set(normalizedAlias, iconItem.Icon);
+    iconItemLookupMap.set(normalizedAlias, iconItem);
+  });
+});
+
 export const getIcon = (name: string): IconType | undefined => {
-  const normalizedName = name.toLowerCase().trim();
-  const iconItem = icons.find(icon => 
-    icon.name.toLowerCase() === normalizedName || 
-    (icon.aliases && icon.aliases.some(alias => alias.toLowerCase() === normalizedName))
-  );
-  return iconItem?.Icon;
+  return iconLookupMap.get(name.toLowerCase().trim());
 };
-
-// Helper function to check if an icon exists
 export const hasIcon = (name: string): boolean => {
-  return getIcon(name) !== undefined;
+  return iconLookupMap.has(name.toLowerCase().trim());
 };
 
-// Helper function to get icons by category
+export const getIconItem = (name: string): IconItem | undefined => {
+  return iconItemLookupMap.get(name.toLowerCase().trim());
+};
+
 export const getIconsByCategory = (category: string): IconItem[] => {
   return icons.filter(icon => icon.category === category);
 };
 
-// Helper function to get all categories
 export const getCategories = (): string[] => {
   const categories = icons.map(icon => icon.category).filter((category): category is string => Boolean(category));
   return [...new Set(categories)];
-};
-
-// Helper function to get icon item (with name and category info)
-export const getIconItem = (name: string): IconItem | undefined => {
-  const normalizedName = name.toLowerCase().trim();
-  return icons.find(icon => 
-    icon.name.toLowerCase() === normalizedName || 
-    (icon.aliases && icon.aliases.some(alias => alias.toLowerCase() === normalizedName))
-  );
 };

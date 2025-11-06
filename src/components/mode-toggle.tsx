@@ -1,4 +1,4 @@
-import { Sun, Moon } from 'lucide-react';
+import { SunIcon,MoonIcon } from '@phosphor-icons/react';
 import { Button } from '@/components/ui/button';
 import { useTheme } from '@/components/theme-provider';
 
@@ -17,12 +17,12 @@ export function ModeToggle() {
       variant="outline"
       size="icon"
     >
-      <Sun
+      <SunIcon
         className={`h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all ${
           theme === 'dark' ? 'hidden' : 'block'
         }`}
       />
-      <Moon
+      <MoonIcon
         className={`h-[1.2rem] w-[1.2rem]  transition-all ${
           theme === 'dark' ? 'block' : 'hidden'
         }`}

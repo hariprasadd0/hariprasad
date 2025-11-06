@@ -57,6 +57,11 @@
     outline: none;
     font-family: 'Onest', sans-serif;
     scroll-behavior: smooth;
+    
+    ::selection {
+      @apply bg-muted
+    }
+
   }
   body {
     @apply bg-background text-foreground;
@@ -66,3 +71,29 @@
   }
 }
 
+.react-activity-calendar__legend-month{
+  @apply text-xs text-muted-foreground;
+}
+
+.react-activity-calendar__scroll-container{ 
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+  
+}
+
+.react-activity-calendar{
+  @apply relative;
+}
+.react-activity-calendar__count{
+  @apply font-medium;
+}
+.react-activity-calendar__footer{
+  @apply absolute;
+}
+.react-activity-calendar__scroll-container{
+  padding-top: 40px !important;
+}

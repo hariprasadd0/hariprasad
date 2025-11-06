@@ -27,18 +27,20 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
   ModeToggle,
   Tech,
   Badge,
 } from '@/components/components';
 // Icons
 import { FiCalendar, FiGithub } from 'react-icons/fi';
-import { X } from 'lucide-react';
-
+import { Flag, X } from 'lucide-react';
+import {
+  Tabs,
+  TabsContent,
+  TabsContents,
+  TabsList,
+  TabsTrigger,
+} from '@/components/animate-ui/components/animate/tabs';
 import Timeline from '@/components/Timeline';
 import socialLinks from '@/data/socialLinks';
 import works from '@/data/works';
@@ -46,14 +48,47 @@ import { eduData } from '@/data/education';
 import { experience, experienceStatus } from '@/data/experience';
 import { getIcon } from '@/lib/icons';
 import { Link, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { BlogPost, loadMarkdownFiles } from '@/utils/loadMarkdown';
 import Footer from './Footer';
+import { GithubChart } from '@/components/GithubChart';
+import { FlaskIcon, GraduationCapIcon } from '@phosphor-icons/react';
 
 const Home = () => {
-
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const navigate = useNavigate();
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  const [activeCategory, setActiveCategory] = useState<string>('all');
+
+  // Check theme on mount and listen for changes
+  useEffect(() => {
+    // Initial check
+    const checkTheme = () => {
+      const theme = localStorage.getItem('vite-ui-theme');
+      setIsDarkMode(theme === 'dark');
+    };
+
+    // Set up observer for theme changes
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          checkTheme();
+        }
+      });
+    });
+
+    // Initial check
+    checkTheme();
+
+    // Start observing the documentElement for class changes
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+
+    // Cleanup
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const loadPosts = async () => {
@@ -61,7 +96,8 @@ const Home = () => {
         const posts = await loadMarkdownFiles();
         setBlogPosts(posts);
       } catch (error) {
-      } 
+        console.error('Error loading posts:', error);
+      }
     };
 
     loadPosts();
@@ -69,17 +105,31 @@ const Home = () => {
 
   const defaultTab = experienceStatus ? 'Experience' : 'Education';
 
-const categories = [...new Set(blogPosts.map(post => post.category))];
+const categories = useMemo(() => 
+  [...new Set(blogPosts.map(post => post.category))], 
+  [blogPosts]
+);
 
-const categoryCount = blogPosts.reduce<Record<string, number>>((countObj, post) => {
-    const { category } = post;
-    countObj[category] = (countObj[category] || 0) + 1;
+const categoryCount = useMemo(() => 
+  blogPosts.reduce<Record<string, number>>((countObj, post) => {
+    countObj[post.category] = (countObj[post.category] || 0) + 1;
     return countObj;
-  }, {} as Record<string, number>);
+  }, {}),
+  [blogPosts]
+);
+
+const filteredPosts = useMemo(() => {
+  if (activeCategory === 'all') return blogPosts;
+  return blogPosts.filter(post => post.category === activeCategory);
+}, [blogPosts, activeCategory]);
 
   // Helper function to safely get category count
   const getCategoryCount = (category: string) => categoryCount[category] || 0;
 
+  const handleLiveClick = useCallback((link: string) => (ev: React.MouseEvent) => {
+  ev.stopPropagation();
+  window.open(link, '_blank');
+}, []);
 
   return (
     <Card className="h-full outline-none shadow-none overflow-hidden rounded-none flex flex-col  items-center  p-6 pb-8 md:p-16 md:pb-8 gap-4 md:gap-10">
@@ -90,17 +140,16 @@ const categoryCount = blogPosts.reduce<Record<string, number>>((countObj, post) 
 
         <HoverCard>
           <p className="text-sm sm:text-base md:text-md leading-6 md:leading-7 text-muted-foreground mb-6">
-            A generalist{' '}
+            A generalist{''}
             <HoverCardTrigger asChild>
-              <span className=" cursor-pointer px-1.5 text-primary/80 underline underline-offset-2 font-medium ">
-                Engineer              
+              <span className=" cursor-pointer px-1.5 text-primary/80 underline underline-offset-4 font-medium decoration-wavy decoration-gray-400/70">
+              Engineer
               </span>
             </HoverCardTrigger>
-          passionate about backend systems and security. I enjoy diving into technical papers and building projects that bring concepts to life.
+            passionate about backend systems & security. I enjoy diving into technical papers and building projects that bring concepts to life.
           </p>
-
           <HoverCardContent className="w-80">
-            <Link to={experience[0]?.link||"/"} target="_blank">
+            <Link to={experience[0]?.link || "/"} target="_blank">
               <div>
                 <div className="space-y-1">
                   <h4 className="text-sm font-semibold">@{experience[0]?.company}</h4>
@@ -139,8 +188,8 @@ const categoryCount = blogPosts.reduce<Record<string, number>>((countObj, post) 
                       </a>
                     </Button>
                   </TooltipTrigger>
-                  <TooltipContent>
-                    <p>{link.name}</p>
+                  <TooltipContent className="text-xs rounded-sm">
+                    <p >{link.name}</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
@@ -150,27 +199,26 @@ const categoryCount = blogPosts.reduce<Record<string, number>>((countObj, post) 
         </div>
         <Tabs
           defaultValue={defaultTab}
-          className="mt-6 mb-6 w-full md:h-48 transition-transform"
+          className="mt-6 w-full"
         >
           <TabsList tabIndex={-1}>
             <TabsTrigger
               className="text-xs"
               value="Experience"
             >
-              Background
+              <FlaskIcon/>Background
             </TabsTrigger>
-            {eduData.length > 0 ? (
+            {eduData.length > 0 &&
               <TabsTrigger
                 className="text-xs"
                 value="Education"
               >
-                Education
+                <GraduationCapIcon/>Education
               </TabsTrigger>
-            ) : (
-              <></>
-            )}
+            }
           </TabsList>
 
+        <TabsContents>
           {experience ? (
             <TabsContent value="Experience">
               <Timeline data={experience} />
@@ -185,8 +233,10 @@ const categoryCount = blogPosts.reduce<Record<string, number>>((countObj, post) 
           ) : (
             <></>
           )}
+          </TabsContents>
         </Tabs>
       </section>
+      <GithubChart isDarkMode={isDarkMode}/>
       {/* WORKS */}
       <section className="max-w-xl flex flex-col gap-7">
         <div className='font-medium'>Projects</div>
@@ -232,7 +282,7 @@ const categoryCount = blogPosts.reduce<Record<string, number>>((countObj, post) 
                   <Drawer>
                     <DrawerTrigger asChild>
                       <Card className="  flex flex-col gap-4 p-4 rounded-sm  shadow-none  hover:shadow-md transition-shadow cursor-pointer w-full h-full">
-                        <img src={slides[0]} alt="" className='rounded-[4px]'/>
+                        <img src={slides[0]} alt="" className='rounded-[4px]' />
                         <div className="flex items-center space-x-2 justify-between w-full">
                           <Avatar className="rounded-sm w-8 h-8 border">
                             <AvatarImage
@@ -245,26 +295,36 @@ const categoryCount = blogPosts.reduce<Record<string, number>>((countObj, post) 
                           </Avatar>
 
                           <div className="flex justify-between w-full items-center ">
-                            <h2 className="text-md font-medium ">
-                              {item.title}
+                            <h2 className="text-md font-medium flex items-center gap-2">
+                              {item.title} {item.liveLink ? "" : (
+                                <TooltipProvider>
+                                  <Tooltip>
+                                    <TooltipTrigger asChild>
+                                      <button>
+                                        {(() => {
+                                          const Icon = getIcon('warning');
+                                          return Icon ? <Icon size={20} className="text-yellow-500 animate-pulse" /> : null;
+                                        })()}
+                                      </button>
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                      <p>Live link is not available </p>
+                                    </TooltipContent>
+                                  </Tooltip>
+                                </TooltipProvider>
+                              )}
                             </h2>
                           </div>
                           <div className="flex items-center gap-1">
-                            <span
-                              onClick={(ev) =>{
-                                ev.stopPropagation();
-                                window.open(item.liveLink, '_blank')
-                              }}
+                            <button
+                              onClick={handleLiveClick(item.liveLink)}
                               className="text-xs p-1 dark:bg-muted rounded-[4px] cursor-pointer"
                             >
                               Live
-                            </span>
+                            </button>
                             <span className="text-xs text-gray-500 ">|</span>
                             <span
-                              onClick={(ev) => {
-                                ev.stopPropagation();
-                                window.open(item.githubLink, '_blank')
-                              }}
+                              onClick={handleLiveClick(item.githubLink)}
                               className="text-xs p-1 dark:bg-muted rounded-[4px] cursor-pointer"
                             >
                               GitHub
@@ -346,9 +406,13 @@ const categoryCount = blogPosts.reduce<Record<string, number>>((countObj, post) 
                               className="text-xs "
                               value="caseStudy"
                             >
-                              case study
+                              Details
                             </TabsTrigger>
+                            <button className='absolute right-14 '>
+                              <Flag size={18} />
+                            </button>
                           </TabsList>
+                          <TabsContents>
                           <TabsContent value="overview">
                             <div className=" p-4 mb-3 md:hidden flex flex-col gap-1 ">
                               <h3 className="text-xm font-medium">Overview</h3>
@@ -444,6 +508,7 @@ const categoryCount = blogPosts.reduce<Record<string, number>>((countObj, post) 
                               </CardFooter>
                             </Card>
                           </TabsContent>
+                          </TabsContents>
                         </Tabs>
                       </ScrollArea>
                     </DrawerContent>
@@ -454,27 +519,60 @@ const categoryCount = blogPosts.reduce<Record<string, number>>((countObj, post) 
           })}
         </div>
       </section>
-      <section className='max-w-xl flex flex-col gap-7'>
-        <div className='font-medium'>Writings</div>
-        <Tabs defaultValue="all">
-          <TabsList className='mb-4'>
-           <TabsTrigger value="all">All</TabsTrigger>
-            {categories.map((category) => (
-              <TabsTrigger key={category} value={category} disabled={getCategoryCount(category) === 0}>
-                {category} ({getCategoryCount(category)})
-              </TabsTrigger>
-            ))}
-          </TabsList>
-          <TabsContent value="all" className='w-full'>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              {blogPosts.map((item) => (
+     <section className='max-w-xl flex flex-col gap-7'>
+  <div className='font-medium'>Writings</div>
+
+  <Tabs value={activeCategory} onValueChange={setActiveCategory}>
+    <TabsList className='mb-4'>
+      <TabsTrigger value="all">All</TabsTrigger>
+      {categories.map((category) => (
+        <TabsTrigger
+          key={category}
+          value={category}
+          disabled={getCategoryCount(category) === 0}
+        >
+          {category} ({getCategoryCount(category)})
+        </TabsTrigger>
+      ))}
+    </TabsList>
+
+    <TabsContents>
+      {/* ALL */}
+      <TabsContent value="all" className='w-full'>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {blogPosts.map((item) => (
+            <Card
+              key={item.id}
+              onClick={() => navigate(`/${item.slug}`)}
+              className="flex flex-col gap-4 p-3 rounded-sm shadow-none hover:shadow-md transition-shadow cursor-pointer w-full h-full"
+            >
+              <div className="flex flex-col h-full gap-2">
+                <Badge className={`flex justify-between bg-transparent hover:bg-transparent shadow-none text-muted-foreground p-0 font-medium ${item.readTime ? 'w-full' : 'w-fit'}`}>
+                  <p>{item.date}</p>
+                  <p>{item.readTime}</p>
+                </Badge>
+                <h6 className="text-md font-medium mt-2">{item.title}</h6>
+                <p className="text-xs text-muted-foreground mt-1 line-clamp-3 flex-grow">
+                  {item.description}
+                </p>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </TabsContent>
+
+      {/* CATEGORIES */}
+      {categories.map((category) => (
+        <TabsContent key={category} value={category} className='w-full'>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {filteredPosts.map((item) => (
                 <Card
                   key={item.id}
                   onClick={() => navigate(`/${item.slug}`)}
                   className="flex flex-col gap-4 p-3 rounded-sm shadow-none hover:shadow-md transition-shadow cursor-pointer w-full h-full"
                 >
                   <div className="flex flex-col h-full gap-2">
-                    <Badge className={`flex justify-between  bg-transparent hover:bg-transparent shadow-none text-muted-foreground p-0 font-medium  ${item.readTime ? 'w-full' : 'w-fit'}`}>
+                    <Badge className={`flex justify-between bg-transparent shadow-none hover:bg-transparent text-muted-foreground p-0 font-medium ${item.readTime ? 'w-full' : 'w-fit'}`}>
                       <p>{item.date}</p>
                       <p>{item.readTime}</p>
                     </Badge>
@@ -485,34 +583,13 @@ const categoryCount = blogPosts.reduce<Record<string, number>>((countObj, post) 
                   </div>
                 </Card>
               ))}
-            </div>
-          </TabsContent>
-           {categories.map((category) => (
-            <TabsContent key={category} value={category} className='w-full'>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                {blogPosts.filter(post => post.category === category).map((item) => (
-                  <Card
-                    key={item.id}
-                    onClick={() => navigate(`/${item.slug}`)}
-                    className="flex flex-col gap-4 p-3 rounded-sm shadow-none hover:shadow-md transition-shadow cursor-pointer w-full h-full"
-                  >
-                    <div className="flex flex-col h-full gap-2">
-                      <Badge className={`flex justify-between bg-transparent shadow-none hover:bg-transparent text-muted-foreground p-0 font-medium  ${item.readTime ? 'w-full' : 'w-fit'}`}>
-                        <p>{item.date}</p>
-                        <p>{item.readTime}</p>
-                      </Badge>
-                      <h6 className="text-md font-medium mt-2">{item.title}</h6>
-                      <p className="text-xs text-muted-foreground mt-1 line-clamp-3 flex-grow">
-                        {item.description}
-                      </p>
-                    </div>
-                  </Card>
-                ))}
-              </div>
-            </TabsContent>
-          ))}
-        </Tabs>
-      </section>
+          </div>
+        </TabsContent>
+      ))}
+    </TabsContents>
+  </Tabs>
+</section>
+
       <Footer />
     </Card>
   );

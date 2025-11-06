@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { lazy, useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -6,8 +6,15 @@ import rehypeRaw from 'rehype-raw';
 import rehypeSanitize from 'rehype-sanitize';
 import { TbArrowBack } from "react-icons/tb";
 import { loadMarkdownFiles, BlogPost } from '@/utils/loadMarkdown';
-import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
+const SyntaxHighlighter = lazy(() => 
+  import('react-syntax-highlighter').then(mod => ({ 
+    default: mod.Prism 
+  }))
+);
 import {dracula} from 'react-syntax-highlighter/dist/esm/styles/prism'
+import {Helmet} from 'react-helmet-async'
+
+
 
 const BlogPostPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -71,7 +78,54 @@ const BlogPostPage = () => {
     );
   }
 
+  const canonicalUrl = `https://hariprasadk.vercel.app/${post.slug}`;
   return (
+    <>
+    <Helmet>
+        <title>{post.title} | Hariprasad</title>
+        <meta name="description" content={post.description} />
+        <link rel="canonical" href={canonicalUrl} />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content={post.title} />
+        <meta property="og:description" content={post.description} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:type" content="article" />
+        {post.imageUrl && <meta property="og:image" content={post.imageUrl} />}
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={post.title} />
+        <meta name="twitter:description" content={post.description} />
+        {post.imageUrl && <meta name="twitter:image" content={post.imageUrl} />}
+        
+        {/* Article metadata */}
+        <meta property="article:published_time" content={post.date} />
+        <meta property="article:author" content={post.author} />
+        
+        
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": post.title,
+            "description": post.description,
+            "author": {
+              "@type": "Person",
+              "name": post.author,
+              "url": "https://hariprasadk.vercel.app"
+            },
+            "datePublished": post.date,
+            "url": canonicalUrl,
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": canonicalUrl
+            },
+            ...(post.imageUrl && { "image": post.imageUrl })
+          })}
+        </script>
+      </Helmet>
     <div className="container max-w-4xl px-6 md:px-10 py-8">
       {/* Header */}
       <div className="absolute top-4 right-4 flex items-center gap-2 group">
@@ -92,7 +146,7 @@ const BlogPostPage = () => {
       <article className="prose prose-neutral dark:prose-invert max-w-none">
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
-          rehypePlugins={[rehypeRaw, rehypeSanitize]}
+          rehypePlugins={[rehypeSanitize,rehypeRaw]}
           components={{
             // Custom image handling for local images
             img: ({ node, ...props }) => {
@@ -148,6 +202,7 @@ const BlogPostPage = () => {
         </ReactMarkdown>
       </article>
     </div>
+    </>
   );
 };
 

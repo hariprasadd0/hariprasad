@@ -1,30 +1,37 @@
-import { FiLinkedin, FiGithub } from 'react-icons/fi';
-import { BsTwitterX } from 'react-icons/bs';
+import { getIconsByCategory } from '../lib/icons';
+import { createElement } from 'react';
 
+// Get social icons from the centralized icon system
+const socialIcons = getIconsByCategory('social');
+
+// Helper function to create icon component with props
+const createIconComponent = (iconName: string) => {
+  const Icon = socialIcons.find(icon => icon.name === iconName)?.Icon;
+  return Icon ? createElement(Icon, { size: 20 }) : null;
+};
 
 const socialLinks = [
   {
     id: 1,
-    name: 'LinkedIn',
+    name: "Hari's LinkedIn",
     link: 'https://www.linkedin.com/in/hariprasad0/',
-    icon: <FiLinkedin size={16} />,
+    icon: createIconComponent('LinkedIn'),
     ariaLabel: 'linkedin',
   },
   {
     id: 2,
-    name: 'Twitter',
+    name: "Hari's X",
     link: 'https://twitter.com/hariiprasad0',
-    icon: <BsTwitterX size={16} />,
+    icon: createIconComponent('X'),
     ariaLabel: 'X',
   },
   {
     id: 3,
-    name: 'GitHub',
+    name: "Hari's GitHub",
     link: 'https://github.com/hariprasadd0',
-    icon: <FiGithub size={16} />,
+    icon: createIconComponent('GitHub'),
     ariaLabel: 'github',
   },
-
   // {
   //   id: 5,
   //   name: 'Email',

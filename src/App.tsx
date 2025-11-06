@@ -8,6 +8,7 @@ import {
 import { AnimatePresence, motion } from "framer-motion";
 import Home from "./pages/Home";
 import BlogPostPage from "./pages/BlogPost";
+import { HelmetProvider } from "react-helmet-async";
 
 function Layout() {
   const location = useLocation();
@@ -41,5 +42,5 @@ const router = createBrowserRouter([
 ]);
 
 export default function App() {
-  return <RouterProvider router={router} />;
+  return <HelmetProvider><RouterProvider router={router} /></HelmetProvider>;
 }
