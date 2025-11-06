@@ -33,7 +33,6 @@ import {
 } from '@/components/components';
 // Icons
 import { FiCalendar, FiGithub } from 'react-icons/fi';
-import { Flag, X } from 'lucide-react';
 import {
   Tabs,
   TabsContent,
@@ -52,7 +51,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { BlogPost, loadMarkdownFiles } from '@/utils/loadMarkdown';
 import Footer from './Footer';
 import { GithubChart } from '@/components/GithubChart';
-import { FlaskIcon, GraduationCapIcon } from '@phosphor-icons/react';
+import { FlagIcon, FlaskIcon, GraduationCapIcon, XIcon } from '@phosphor-icons/react';
 
 const Home = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -385,7 +384,7 @@ const filteredPosts = useMemo(() => {
                             variant="outline"
                             className="shadow-none outline-none border-none px-2"
                           >
-                            <X />
+                            <XIcon />
                           </Button>
                         </DrawerClose>
                       </DrawerHeader>
@@ -409,7 +408,7 @@ const filteredPosts = useMemo(() => {
                               Details
                             </TabsTrigger>
                             <button className='absolute right-14 '>
-                              <Flag size={18} />
+                              <FlagIcon size={18} />
                             </button>
                           </TabsList>
                           <TabsContents>
