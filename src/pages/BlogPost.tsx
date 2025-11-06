@@ -1,4 +1,4 @@
-import { lazy, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -6,11 +6,7 @@ import rehypeRaw from 'rehype-raw';
 import rehypeSanitize from 'rehype-sanitize';
 import { TbArrowBack } from "react-icons/tb";
 import { loadMarkdownFiles, BlogPost } from '@/utils/loadMarkdown';
-const SyntaxHighlighter = lazy(() => 
-  import('react-syntax-highlighter').then(mod => ({ 
-    default: mod.Prism 
-  }))
-);
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import {dracula} from 'react-syntax-highlighter/dist/esm/styles/prism'
 import {Helmet} from 'react-helmet-async'
 
