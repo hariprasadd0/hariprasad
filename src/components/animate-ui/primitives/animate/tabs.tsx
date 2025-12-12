@@ -156,7 +156,7 @@ const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>(
     const { activeValue, handleValueChange, registerTrigger } = useTabs();
 
     const localRef = React.useRef<HTMLButtonElement | null>(null);
-    
+
     // Combine refs
     React.useImperativeHandle(forwardedRef, () => localRef.current!);
 
@@ -214,7 +214,7 @@ function TabsContents({
   const itemRefs = React.useRef<Array<HTMLDivElement | null>>([]);
   const [height, setHeight] = React.useState<number | 'auto'>('auto');
   const roRef = React.useRef<ResizeObserver | null>(null);
-  
+
   // ✅ Cache computed styles to avoid repeated getComputedStyle calls
   const cachedStyles = React.useRef<{
     paddingY: number;
@@ -230,7 +230,7 @@ function TabsContents({
 
     // Batch all layout reads together
     const paneRect = pane.getBoundingClientRect();
-    
+
     // Cache computed styles on first call
     if (!cachedStyles.current) {
       const cs = getComputedStyle(container);
@@ -242,7 +242,7 @@ function TabsContents({
     }
 
     const { isBorderBox, paddingY, borderY } = cachedStyles.current;
-    let total = paneRect.height + (isBorderBox ? paddingY + borderY : 0);
+    const total = paneRect.height + (isBorderBox ? paddingY + borderY : 0);
 
     // Round to device pixel ratio
     const dpr = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
@@ -253,7 +253,7 @@ function TabsContents({
   React.useEffect(() => {
     // Clear cached styles when content changes
     cachedStyles.current = null;
-    
+
     if (roRef.current) {
       roRef.current.disconnect();
       roRef.current = null;
@@ -339,7 +339,7 @@ const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
         ref={ref}
         role="tabpanel"
         data-slot="tabs-content"
-        // @ts-ignore - inert is a valid HTML attribute but not in React types yet
+        // @ts-expect-error - inert is a valid HTML attribute but not in React types yet
         inert={!isActive ? '' : undefined}
         style={{ overflow: 'hidden', ...style }}
         initial={{ filter: 'blur(0px)' }}

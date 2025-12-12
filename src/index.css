@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Onest:wght@100..900&family=Saira:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -57,43 +57,53 @@
     outline: none;
     font-family: 'Onest', sans-serif;
     scroll-behavior: smooth;
-    
+
     ::selection {
       @apply bg-muted
     }
 
   }
+
+  .text-muted-foreground {
+    font-family: 'Manrope', sans-serif;
+  }
+
   body {
     @apply bg-background text-foreground;
   }
+
   body::-webkit-scrollbar {
     width: 0px;
   }
 }
 
-.react-activity-calendar__legend-month{
+.react-activity-calendar__legend-month {
   @apply text-xs text-muted-foreground;
 }
 
-.react-activity-calendar__scroll-container{ 
+.react-activity-calendar__scroll-container {
   scrollbar-width: none;
   -ms-overflow-style: none;
+
   ::-webkit-scrollbar {
     width: 0;
     height: 0;
   }
-  
+
 }
 
-.react-activity-calendar{
+.react-activity-calendar {
   @apply relative;
 }
-.react-activity-calendar__count{
+
+.react-activity-calendar__count {
   @apply font-medium;
 }
-.react-activity-calendar__footer{
+
+.react-activity-calendar__footer {
   @apply absolute;
 }
-.react-activity-calendar__scroll-container{
+
+.react-activity-calendar__scroll-container {
   padding-top: 40px !important;
 }
