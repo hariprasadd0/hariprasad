@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { CopyIcon, Check } from "@phosphor-icons/react";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 interface DemoFrameProps {
@@ -17,9 +17,7 @@ export function DemoFrame({ url, className, onLoadError, fallback }: DemoFramePr
     const iframeRef = useRef<HTMLIFrameElement>(null);
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-    if (url.trim() === "") {
-        return <>{fallback}</>
-    }
+
 
     const handleCopy = async () => {
         await navigator.clipboard.writeText(url);
@@ -31,11 +29,11 @@ export function DemoFrame({ url, className, onLoadError, fallback }: DemoFramePr
         window.open(url, "_blank");
     };
 
-    const handleError = () => {
+    const handleError = useCallback(() => {
         setHasError(true);
         setIsLoading(false);
         onLoadError?.();
-    };
+    }, [onLoadError]);
 
     const handleLoad = () => {
         // Clear the timeout since iframe loaded
@@ -74,8 +72,11 @@ export function DemoFrame({ url, className, onLoadError, fallback }: DemoFramePr
                 clearTimeout(timeoutRef.current);
             }
         };
-    }, [url]);
+    }, [url, isLoading, handleError]);
 
+    if (url.trim() === "") {
+        return <>{fallback}</>
+    }
     // Show fallback if error
     if (hasError && fallback) {
         return <>{fallback}</>;

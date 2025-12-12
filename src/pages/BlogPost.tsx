@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -16,9 +16,9 @@ const BlogPostPage = () => {
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const handleBackNavigation = () => {
+  const handleBackNavigation = useCallback(() => {
     navigate("/", { replace: true });
-  };
+  }, [navigate]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -150,7 +150,7 @@ const BlogPostPage = () => {
             rehypePlugins={[rehypeSanitize, rehypeRaw]}
             components={{
               // Custom image handling for local images
-              img: ({ node, ...props }) => {
+              img: ({ ...props }) => {
                 const src = props.src || "";
                 // If image path is relative, prepend the journals folder path
                 const imageSrc = src.startsWith("http")
@@ -171,7 +171,6 @@ const BlogPostPage = () => {
               },
               // Style code blocks
               code({
-                node,
                 inline,
                 className,
                 children: codeChildren,
@@ -194,7 +193,7 @@ const BlogPostPage = () => {
                 );
               },
               // Style links
-              a: ({ node, ...props }) => (
+              a: ({ ...props }) => (
                 <a
                   {...props}
                   className="text-primary hover:underline"

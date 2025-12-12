@@ -1,24 +1,46 @@
-import { DiMongodb } from 'react-icons/di';
-import { BiLogoTypescript } from 'react-icons/bi';
-import { FaReact, FaNodeJs, FaAws } from 'react-icons/fa';
-import { IoIosGitBranch } from 'react-icons/io';
-import { RiTailwindCssFill, RiNextjsFill } from 'react-icons/ri';
-import { DiPostgresql } from 'react-icons/di';
-import { IconType } from 'react-icons';
+import { IconType } from "react-icons";
 
 export interface TechItem {
   tech: string;
   Icon: IconType;
 }
 
-export const techData: TechItem[] = [
-  { tech: 'Typescript', Icon: BiLogoTypescript },
-  { tech: 'React', Icon: FaReact },
-  { tech: 'MongoDB', Icon: DiMongodb },
-  { tech: 'Git', Icon: IoIosGitBranch },
-  { tech: 'AWS', Icon: FaAws },
-  { tech: 'Tailwind CSS', Icon: RiTailwindCssFill },
-  { tech: 'Node.js', Icon: FaNodeJs },
-  { tech: 'Next.js', Icon: RiNextjsFill },
-  { tech: 'PostgreSQL', Icon: DiPostgresql },
+export interface TechCategory {
+  title: string;
+  items: TechItem[];
+}
+import { BiLogoTypescript } from "react-icons/bi";
+
+import {
+  SiGoland,
+  SiDocker,
+  SiAmazon,
+} from "react-icons/si";
+
+import { FaNodeJs } from "react-icons/fa";
+import { DiPostgresql, DiMongodb } from "react-icons/di";
+
+export const techCategories: TechCategory[] = [
+  {
+    title: "Languages & Runtime",
+    items: [
+      { tech: "Golang", Icon: SiGoland },
+      { tech: "TypeScript", Icon: BiLogoTypescript },
+      { tech: "Node.js", Icon: FaNodeJs },
+    ],
+  },
+  {
+    title: "Cloud",
+    items: [
+      { tech: "Docker", Icon: SiDocker },
+      { tech: "AWS", Icon: SiAmazon },
+    ],
+  },
+  {
+    title: "Database",
+    items: [
+      { tech: "PostgreSQL", Icon: DiPostgresql },
+      { tech: "MongoDB", Icon: DiMongodb },
+    ],
+  },
 ];
