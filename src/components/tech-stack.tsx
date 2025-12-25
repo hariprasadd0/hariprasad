@@ -39,7 +39,7 @@ export const TechStack = ({ categories }: TechStackProps) => {
                 >
                   {/* Render the Icon directly since it is a component in your data */}
                   <item.Icon className="h-4 w-4 text-foreground/70" />
-                  <span>{item.tech}</span>
+                  <span className="text-subtext">{item.tech}</span>
                 </Badge>
               ))}
             </div>

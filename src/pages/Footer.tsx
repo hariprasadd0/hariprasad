@@ -21,12 +21,12 @@ const Footer: React.FC = () => {
   const currentDate = new Date();
   const location = 'Kannur';
   const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
-const [time, setTime] = useState(new Date())
+  const [time, setTime] = useState(new Date())
 
-useEffect(() => {
-  const timer = setInterval(() => setTime(new Date()), 1000)
-  return () => clearInterval(timer)
-}, [])
+  useEffect(() => {
+    const timer = setInterval(() => setTime(new Date()), 1000)
+    return () => clearInterval(timer)
+  }, [])
   useEffect(() => {
     const loadWeather = async () => {
       // Try to get weather from session storage first
@@ -70,9 +70,9 @@ useEffect(() => {
     loadWeather();
   }, [apiKey]);
 
-  const formatTime = (date:Date) => {
-    return date.toLocaleTimeString('en-IN', 
-      { hour: '2-digit', minute: '2-digit',second:"2-digit", hour12: true }
+  const formatTime = (date: Date) => {
+    return date.toLocaleTimeString('en-IN',
+      { hour: '2-digit', minute: '2-digit', second: "2-digit", hour12: true }
     )
   }
   return (
@@ -89,12 +89,12 @@ useEffect(() => {
               className="w-5 h-5"
               loading="lazy"
             />
-            <span>
+            <span className="text-subtext">
               {Math.round(weather.main.temp)}°C • {location} • <span className='min-w-[110px]'>{formatTime(time)}</span>
             </span>
           </div>
         ) : (
-          <span>
+          <span className="text-subtext">
             {formatTime(time)}
           </span>
         )}

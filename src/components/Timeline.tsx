@@ -23,10 +23,9 @@ const Timeline = ({ data }: TimelineProps) => {
             <div className="mt-2">
               <div
                 className={`w-2 h-2 rounded-full transition-colors
-                  ${
-                    item.current
-                      ? "bg-primary ring-4 ring-primary/20"
-                      : "bg-muted-foreground/30"
+                  ${item.current
+                    ? "bg-primary ring-4 ring-primary/20"
+                    : "bg-muted-foreground/30"
                   }`}
               />
             </div>
@@ -39,10 +38,10 @@ const Timeline = ({ data }: TimelineProps) => {
                   <div className="flex items-center gap-2">
                     {item.current ? (
                       <>
-                        <h3 className="font-medium text-sm">{item.title}</h3>
+                        <h3 className="font-medium text-md tracking-wide">{item.title}</h3>
                       </>
                     ) : (
-                      <h3 className="font-medium text-sm text-muted-foreground">
+                      <h3 className="font-medium text-md text-[#A3A3A3] tracking-wide">
                         {item.title}
                       </h3>
                     )}
@@ -54,7 +53,7 @@ const Timeline = ({ data }: TimelineProps) => {
                       <img
                         src={item.companyLogo}
                         alt={item.company}
-                        className="w-5 h-5 filter grayscale saturate-0"
+                        className="w-5 h-5 filter grayscale"
                       />
                     )}
                     <p className="text-xs text-muted-foreground">

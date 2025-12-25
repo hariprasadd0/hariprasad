@@ -12,8 +12,8 @@ import {
   ReadCvLogoIcon,
   WarningCircleIcon,
   XLogoIcon,
+  CodeIcon,
 } from "@phosphor-icons/react";
-import { TbBrandLeetcode } from "react-icons/tb";
 
 export interface IconItem {
   name: string;
@@ -127,7 +127,7 @@ export const icons: IconItem[] = [
   },
   {
     name: "leetcode",
-    Icon: TbBrandLeetcode,
+    Icon: CodeIcon,
     category: "social",
     aliases: ["leetcode"],
   },

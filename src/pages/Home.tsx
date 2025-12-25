@@ -55,6 +55,7 @@ import {
   FlagIcon,
   FlaskIcon,
   GraduationCapIcon,
+  HandPeaceIcon,
   ToolboxIcon,
   XIcon,
 } from "@phosphor-icons/react";
@@ -153,20 +154,19 @@ const Home = () => {
       <Card className="h-full outline-none shadow-none overflow-hidden rounded-none flex flex-col  items-center  p-6 pb-8 md:p-16 md:pb-8 gap-4 md:gap-10">
         <section className="max-w-xl flex  flex-col gap-1">
           <div className="flex gap-2 items-center mb-3 ">
-            <h1 className="text-xl md:text-2xl font-medium ">Hey, I'm Hariprasad</h1>
+            <h1 className="text-2xl md:text-3xl font-medium tracking-wide flex items-center gap-2">Hey, I'm Hariprasad <HandPeaceIcon weight="duotone" /></h1>
           </div>
 
           <HoverCard>
             <p className="text-sm sm:text-base md:text-md leading-6 md:leading-7 text-muted-foreground mb-6">
-              A generalist{''}
+              Backend-leaning{''}
               <HoverCardTrigger asChild>
                 <span className=" cursor-pointer px-1.5 text-primary/80 underline underline-offset-4 font-medium decoration-wavy decoration-gray-400/70">
                   Engineer
                 </span>
               </HoverCardTrigger>
-              passionate about backend systems & security. I enjoy diving into technical papers and building projects that bring concepts to life.
-            </p>
-            <HoverCardContent className="w-80">
+              with a strong interest in systems and security. I like reading technical papers and translating them into working software.            </p>
+            <HoverCardContent className="w-80 rounded-none">
               <Link to={experience[0]?.link || "/"} target="_blank">
                 <div>
                   <div className="space-y-1">
@@ -218,18 +218,18 @@ const Home = () => {
           <Tabs defaultValue={defaultTab} className="mt-6 w-full">
             <TabsList tabIndex={-1}>
               <TabsTrigger className="text-xs" value="Experience">
-                <FlaskIcon />
+                <FlaskIcon weight="duotone" />
                 Background
               </TabsTrigger>
               {eduData.length > 0 && (
                 <TabsTrigger className="text-xs" value="Education">
-                  <GraduationCapIcon />
+                  <GraduationCapIcon weight="duotone" />
                   Education
                 </TabsTrigger>
               )}
               {techCategories.length > 0 && (
                 <TabsTrigger className="text-xs" value="tech-stack">
-                  <ToolboxIcon />
+                  <ToolboxIcon weight="duotone" />
                   Tech Stack
                 </TabsTrigger>
               )}
@@ -263,7 +263,7 @@ const Home = () => {
         <GithubChart isDarkMode={isDarkMode} />
         {/* WORKS */}
         <section className="max-w-xl flex flex-col gap-7">
-          <div className="font-medium">Projects</div>
+          <div className="font-medium text-instrument text-lg tracking-wide">Projects</div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-center">
             {works.map((item) => {
               const slides = item.carouselImg;
@@ -494,7 +494,7 @@ const Home = () => {
           </div>
         </section>
         <section className="max-w-xl flex flex-col gap-7">
-          <div className="font-medium">Writings</div>
+          <div className="font-medium text-instrument text-lg tracking-wide">Writings</div>
 
           <Tabs value={activeCategory} onValueChange={setActiveCategory}>
             <TabsList className="mb-4">
