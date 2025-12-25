@@ -1,109 +1,144 @@
-@import url('https://fonts.googleapis.com/css2?family=Onest:wght@100..900&family=Saira:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Onest:wght@100..900&family=Saira:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --radius: 0.75rem;
-  }
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 0 0% 3.9%;
+        --card: 0 0% 100%;
+        --card-foreground: 0 0% 3.9%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 0 0% 3.9%;
+        --primary: 0 0% 9%;
+        --primary-foreground: 0 0% 98%;
+        --secondary: 0 0% 96.1%;
+        --secondary-foreground: 0 0% 9%;
+        --muted: 0 0% 96.1%;
+        --muted-foreground: 0 0% 45.1%;
+        --accent: 0 0% 96.1%;
+        --accent-foreground: 0 0% 9%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 0 0% 89.8%;
+        --input: 0 0% 89.8%;
+        --ring: 0 0% 3.9%;
+        --radius: 0.75rem;
+        --font-heading: "Instrument Serif", serif;
+        --font-subtext: "Satoshi", sans-serif;
+    }
 
-  .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-  }
+    /* Add this inside @layer base or globally to define the font */
+    @font-face {
+        font-family: 'Satoshi';
+        src: url('/fonts/Satoshi-Regular.woff2') format('woff2'),
+            url('/fonts/Satoshi-Regular.woff') format('woff');
+        font-weight: 400;
+        font-style: normal;
+        letter-spacing: 0.05em;
+        font-display: swap;
+    }
+
+    .dark {
+        --background: 0 0% 3.9%;
+        --foreground: 0 0% 98%;
+        --card: 0 0% 3.9%;
+        --card-foreground: 0 0% 98%;
+        --popover: 0 0% 3.9%;
+        --popover-foreground: 0 0% 98%;
+        --primary: 0 0% 98%;
+        --primary-foreground: 0 0% 9%;
+        --secondary: 0 0% 14.9%;
+        --secondary-foreground: 0 0% 98%;
+        --muted: 0 0% 14.9%;
+        --muted-foreground: 0 0% 63.9%;
+        --accent: 0 0% 14.9%;
+        --accent-foreground: 0 0% 98%;
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 0 0% 14.9%;
+        --input: 0 0% 14.9%;
+        --ring: 0 0% 83.1%;
+    }
 }
 
 @layer base {
-  * {
-    @apply border-border;
-    outline: none;
-    font-family: 'Onest', sans-serif;
-    scroll-behavior: smooth;
+    * {
+        @apply border-border;
+        outline: none;
+        scroll-behavior: smooth;
 
-    ::selection {
-      @apply bg-muted
+        ::selection {
+            @apply bg-muted;
+        }
     }
 
-  }
+    .text-muted-foreground {
+        font-family: var(--font-subtext);
+    }
 
-  .text-muted-foreground {
-    font-family: 'Manrope', sans-serif;
-  }
+    .text-subtext,
+    p {
+        font-family: var(--font-subtext);
+    }
 
-  body {
-    @apply bg-background text-foreground;
-  }
+    .text-instrument {
+        font-family: var(--font-heading);
+    }
 
-  body::-webkit-scrollbar {
-    width: 0px;
-  }
+    body {
+        @apply bg-background text-foreground;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: var(--font-heading);
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    body::-webkit-scrollbar {
+        width: 0px;
+    }
 }
 
+
+
+
+
 .react-activity-calendar__legend-month {
-  @apply text-xs text-muted-foreground;
+    @apply text-xs text-muted-foreground;
 }
 
 .react-activity-calendar__scroll-container {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 
-  ::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-  }
-
+    ::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+    }
 }
 
 .react-activity-calendar {
-  @apply relative;
+    @apply relative;
 }
 
 .react-activity-calendar__count {
-  @apply font-medium;
+    @apply font-medium text-instrument text-lg tracking-wider;
 }
 
 .react-activity-calendar__footer {
-  @apply absolute;
+    @apply absolute;
 }
 
 .react-activity-calendar__scroll-container {
-  padding-top: 40px !important;
+    padding-top: 40px !important;
 }
