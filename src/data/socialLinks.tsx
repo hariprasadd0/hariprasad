@@ -1,14 +1,24 @@
 import { getIconsByCategory } from "../lib/icons";
 import { createElement } from "react";
+import { Icon } from "@phosphor-icons/react";
 
 // Get social icons from the centralized icon system
 const socialIcons = getIconsByCategory("social");
 
 // Helper function to create icon component with props
 const createIconComponent = (iconName: string) => {
-  const Icon = socialIcons.find((icon) => icon.name === iconName)?.Icon;
-  return Icon ? createElement(Icon, { size: 20 }) : null;
+  const IconComponent = socialIcons.find(
+    (icon) => icon.name === iconName
+  )?.Icon as Icon | undefined;
+
+  return IconComponent
+    ? createElement(IconComponent, {
+      size: 20,
+      weight: "duotone",
+    })
+    : null;
 };
+
 
 const socialLinks = [
   {

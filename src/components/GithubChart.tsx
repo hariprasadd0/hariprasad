@@ -35,7 +35,7 @@ export const GithubChart: React.FC<GithubChartProps> = ({ isDarkMode }) => {
                 hideColorLegend={true}
                 throwOnError
                 labels={{
-                  totalCount: "Contributions - {{count}}",
+                  totalCount: "Contributions - [{{count}}]",
                 }}
                 style={{
                   width: "100%",
