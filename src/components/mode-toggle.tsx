@@ -18,14 +18,14 @@ export function ModeToggle() {
       size="icon"
     >
       <SunIcon
-        className={`h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all ${
-          theme === "dark" ? "hidden" : "block"
-        }`}
+        weight="duotone"
+        className={`h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all ${theme === "dark" ? "hidden" : "block"
+          }`}
       />
       <MoonIcon
-        className={`h-[1.2rem] w-[1.2rem]  transition-all ${
-          theme === "dark" ? "block" : "hidden"
-        }`}
+        weight="duotone"
+        className={`h-[1.2rem] w-[1.2rem]  transition-all ${theme === "dark" ? "block" : "hidden"
+          }`}
       />
       <span className="sr-only">Toggle theme</span>
     </Button>
