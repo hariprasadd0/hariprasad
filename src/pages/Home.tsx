@@ -527,7 +527,7 @@ const Home = () => {
                           <p>{item.date}</p>
                           <p>{item.readTime}</p>
                         </Badge>
-                        <h6 className="text-md font-medium mt-2">{item.title}</h6>
+                        <h6 className="text-lg font-medium mt-2">{item.title}</h6>
                         <p className="text-xs text-muted-foreground mt-1 line-clamp-3 flex-grow">
                           {item.description}
                         </p>
@@ -554,7 +554,7 @@ const Home = () => {
                             <p>{item.date}</p>
                             <p>{item.readTime}</p>
                           </Badge>
-                          <h6 className="text-md font-medium mt-2">
+                          <h6 className="text-lg font-medium mt-2">
                             {item.title}
                           </h6>
                           <p className="text-xs text-muted-foreground mt-1 line-clamp-3 flex-grow">

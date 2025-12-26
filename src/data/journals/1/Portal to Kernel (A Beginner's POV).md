@@ -9,7 +9,7 @@ readTime: "5 min"
 
 
 ## Portal to Kernel (A Beginner's POV)
-![pk](/images/pk.svg)
+![pk](/images/bpf-banner.png)
 
 When I first discovered [**eBPF**](https://ebpf.io/what-is-ebpf/) aka *"Extended Berkeley Packet Filter"*, my curiosity reached its peak. I’ve always been fascinated by operating systems, but I never imagined I could explore their inner workings so deeply — at least not without diving into complex `.ko` modules.
 
@@ -22,7 +22,7 @@ It is essentially a restricted form of C - we write programs in familiar C like 
 ![ebpf](/images/ebpf.png)
 
 The source `hello.c` is compiled using `clang` to an eBPF bytecode, stored inside an `ELF` object file. Then a loader (like `bpftool` or `libbpf`) calls the `bpf()` syscall with the command `BPF_PROG_LOAD`, which loads the object file into the kernel.
-
+> [!COMPILE]
 ## Verifier 
 
 The eBPF verifier is a form of static analysis. It validates that the program meets several conditions, such as not entering an infinite loop, not using memory with undefined contents, not accessing memory out of bounds etc.
@@ -45,6 +45,7 @@ user-space loader (libbpf, bpftool, custom loader, or bpf() syscall with `BPF_PR
 
 As our program is running inside the kernel the program cannot directly `printf()` or write to `stdout` . eBPF have some helper functions such as 
 `bpf_printk()` writes messages into the kernel’s trace ring buffer, readable via `/sys/kernel/debug/tracing/trace_pipe`. These buffers are ephemeral , meaning they’re cleared on reboot or when the tracing subsystem resets 
+> [!TRACE] 
 
 ## eBPF Maps
 

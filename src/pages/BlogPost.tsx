@@ -9,6 +9,9 @@ import { loadMarkdownFiles, BlogPost } from "@/utils/loadMarkdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { Helmet } from "react-helmet-async";
+import { getComponentForTag } from "@/components/blog/registry";
+import { Kbd, KbdGroup } from "@/components/ui/kbd";
+import { ArrowBendDownLeftIcon } from "@phosphor-icons/react";
 
 const BlogPostPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -126,20 +129,16 @@ const BlogPostPage = () => {
       </Helmet>
       <div className="container max-w-4xl px-6 md:px-10 py-8">
         {/* Header */}
-        <div className="absolute top-4 right-4 flex items-center gap-2 group">
+        <div className="absolute top-4 right-9 flex items-center gap-2 group">
           <button
             onClick={handleBackNavigation}
             className="flex items-center gap-2 bg-secondary p-2 rounded-md transition-colors mb-8 group"
             title="Back to home (or press B)"
           >
-            <TbArrowBack
-              strokeWidth={1.5}
-              size={24}
-              className="group-hover:scale-110 transition-transform"
-            />
-            <kbd className="hidden md:inline-flex items-center justify-center min-w-[24px] h-6 px-2 bg-gradient-to-b from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 text-xs font-semibold text-gray-700 dark:text-gray-200 rounded border border-gray-300 dark:border-gray-600 shadow-sm">
-              B
-            </kbd>
+            <KbdGroup >
+              <ArrowBendDownLeftIcon weight="duotone" />
+              <Kbd>B</Kbd>
+            </KbdGroup>
           </button>
         </div>
 
@@ -205,6 +204,25 @@ const BlogPostPage = () => {
                   }
                 />
               ),
+              blockquote: (props: any) => {
+                // Check if children exists and has content
+                const grandChildren = props.children?.[1]?.props?.children;
+                const content = Array.isArray(grandChildren) ? grandChildren[0] : grandChildren;
+
+                if (typeof content === 'string') {
+                  const match = content.match(/^\[!(\w+)\]/);
+                  if (match) {
+                    const [, tag] = match;
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    const Component = getComponentForTag(tag);
+                    if (Component) {
+                      return <Component {...props} />;
+                    }
+                  }
+                }
+
+                return <blockquote {...props} />;
+              }
             }}
           >
             {post.content}
