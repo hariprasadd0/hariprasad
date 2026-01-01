@@ -143,7 +143,7 @@ const BlogPostPage = () => {
         </div>
 
         {/* Markdown Content */}
-        <article className="prose prose-neutral dark:prose-invert max-w-none p-5 border shadow ">
+        <article className="prose prose-neutral dark:prose-invert max-w-none p-5  shadow ">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             rehypePlugins={[rehypeSanitize, rehypeRaw]}
