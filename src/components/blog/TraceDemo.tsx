@@ -42,10 +42,10 @@ export default function TraceDemo() {
 
     return (
         <div className="my-8 border bg-card text-card-foreground shadow-sm overflow-hidden">
-            <div className="flex items-center justify-between border-b p-4 bg-muted/40">
-                <div className="flex items-center gap-2">
+            <div className="flex items-center justify-between border-b md:p-4 p-2 bg-muted/40">
+                <div className="flex items-center gap-2 md:w-full w-1/2">
                     <TerminalWindowIcon className="text-muted-foreground" size={20} />
-                    <span className="font-mono text-sm font-medium">/sys/kernel/debug/tracing/trace_pipe</span>
+                    <span className="font-mono text-sm font-medium md:w-full w-1/2 whitespace-nowrap truncate">/sys/kernel/debug/tracing/trace_pipe</span>
                 </div>
                 <div className="flex gap-2">
                     <button
@@ -58,7 +58,7 @@ export default function TraceDemo() {
                     <button
                         onClick={toggleTrace}
                         className={cn(
-                            "flex items-center gap-2  px-3 py-1.5 text-xs font-medium transition-all",
+                            "flex items-center gap-2  px-3 py-1 text-xs font-medium transition-all",
                             isRunning
                                 ? "bg-destructive text-destructive-foreground hover:bg-destructive/90"
                                 : "bg-primary text-primary-foreground hover:bg-primary/90"
