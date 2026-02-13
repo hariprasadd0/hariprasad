@@ -9,6 +9,7 @@ import Lupin from './images/Lupin.svg';
 import LupinScreen1 from './images/lupinScreen.png'
 import FreelanceLogo from './images/Logo.png';
 import userLogo from './images/user.webp';
+import bg from './images/banner.gif'
 
 export {
   img1,
@@ -21,5 +22,6 @@ export {
   FreelanceLogo,
   userLogo,
   Lupin,
-  LupinScreen1
+  LupinScreen1,
+  bg
 };
