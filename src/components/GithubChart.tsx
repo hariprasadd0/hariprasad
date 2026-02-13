@@ -22,6 +22,7 @@ class GithubCalErrorBoundary extends Component<
 }
 
 export const GithubChart: React.FC<GithubChartProps> = ({ isDarkMode }) => {
+  const currentYear = new Date().getFullYear()
   return (
     <GithubCalErrorBoundary>
       <section className="w-full max-w-xl mx-auto px-4 sm:px-6 lg:px-0 pt-5 pb-5">
@@ -33,6 +34,7 @@ export const GithubChart: React.FC<GithubChartProps> = ({ isDarkMode }) => {
                 colorScheme={isDarkMode ? "dark" : "light"}
                 hideTotalCount={false}
                 hideColorLegend={true}
+                year={currentYear}
                 throwOnError
                 labels={{
                   totalCount: "Contributions - [{{count}}]",
