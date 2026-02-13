@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/badge";
+import { getIcon } from "@/lib/icons";
 
 type TimelineItem = {
   current: boolean;
@@ -24,7 +25,7 @@ const Timeline = ({ data }: TimelineProps) => {
               <div
                 className={`w-2 h-2 rounded-full transition-colors
                   ${item.current
-                    ? "bg-primary ring-4 ring-primary/20"
+                    ? "bg-primary/90 ring-4 ring-primary/20"
                     : "bg-muted-foreground/30"
                   }`}
               />
@@ -38,26 +39,27 @@ const Timeline = ({ data }: TimelineProps) => {
                   <div className="flex items-center gap-2">
                     {item.current ? (
                       <>
-                        <h3 className="font-medium text-md tracking-wide">{item.title}</h3>
-                      </>
-                    ) : (
-                      <h3 className="font-medium text-md text-[#A3A3A3] tracking-wide">
-                        {item.title}
-                      </h3>
-                    )}
-                  </div>
-
-                  {/* Company */}
-                  <div className="flex items-center gap-1 mt-1">
-                    {item.companyLogo && (
+                      {item.companyLogo && (
                       <img
                         src={item.companyLogo}
                         alt={item.company}
                         className="w-5 h-5 filter grayscale"
                       />
                     )}
+                        <h3 className="font-medium text-md tracking-wider">{item.company}</h3>
+                      </>
+                    ) : (
+                      <h3 className="font-medium text-md text-[#A3A3A3] tracking-wide">
+                        {item.company}
+                      </h3>
+                    )}
+                  </div>
+
+                  {/* Company */}
+                  <div className="flex items-center gap-1 mt-1">
+                    
                     <p className="text-xs text-muted-foreground">
-                      {item.company}
+                      {item.title}
                       {item.duration && (
                         <span className="text-muted-foreground/60">
                           {" "}
@@ -72,15 +74,18 @@ const Timeline = ({ data }: TimelineProps) => {
               {/* Skills */}
               {item.skills && (
                 <div className="flex flex-wrap gap-1.5">
-                  {item.skills.map((skill) => (
-                    <Badge
-                      key={skill}
-                      variant="outline"
-                      className="text-xs font-normal px-2 py-0.5 text-muted-foreground rounded-[2px]"
-                    >
-                      {skill.toLowerCase()}
-                    </Badge>
-                  ))}
+                  {item.skills.map((skill) => {
+                    const Icon = getIcon(skill.toLowerCase());
+                    return (
+                      <Badge
+                        key={skill}
+                        variant="outline"
+                        className="flex items-center gap-0.5 text-xs font-normal px-2 py-0.5 text-muted-foreground rounded-[2px] "
+                      >
+                       {Icon && <Icon className="inline w-4 h-4" /> ? <Icon className="inline w-4 h-4" /> : skill.toLowerCase()}
+                      </Badge>
+                    );
+                  })}
                 </div>
               )}
             </div>
