@@ -55,7 +55,6 @@ import {
   FlagIcon,
   FlaskIcon,
   GraduationCapIcon,
-  HandPeaceIcon,
   ToolboxIcon,
   XIcon,
 } from "@phosphor-icons/react";
@@ -63,6 +62,7 @@ import { techCategories } from "@/data/techData";
 import { TechStack } from "@/components/tech-stack";
 import { DemoFrame } from "@/components/demoFrame";
 import { Helmet } from "react-helmet-async";
+import { bg } from "@/assets/workImg";
 
 const Home = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -151,21 +151,35 @@ const Home = () => {
       <Helmet>
         <title>Hariprasad | Full Stack Developer</title>
       </Helmet>
-      <Card className="h-full outline-none shadow-none overflow-hidden rounded-none flex flex-col  items-center  p-6 pb-8 md:p-16 md:pb-8 gap-4 md:gap-10">
-        <section className="max-w-xl flex  flex-col gap-1">
-          <div className="flex gap-2 items-center mb-3 ">
-            <h1 className="text-2xl md:text-3xl font-medium tracking-wide flex items-center gap-2">Hey, I'm Hariprasad <HandPeaceIcon weight="duotone" /></h1>
+      <Card className="h-full outline-none border-none shadow-none overflow-hidden rounded-none flex flex-col  items-center  p-6 pb-8 md:p-16 md:pb-8 gap-4 md:gap-10">
+        <section className="max-w-xl flex  flex-col gap-1 overflow-x-hidden">
+          <img
+            src={bg}
+            alt="Background"
+            className="w-full md:w-[48%] h-24 object-cover absolute -top-12 md:-top-3 -translate-x-[24px] md:-translate-x-[20px] translate-y-[10px] select-none"
+          />
+          <div className="flex gap-2  mb-3 flex-col w-full">
+            <Avatar className="rounded-full w-16 h-16">
+              <AvatarImage alt="Hariprasad" src="/profile.jpg" />
+              <AvatarFallback className="text-sm text-gray-500">
+                HP
+              </AvatarFallback>
+            </Avatar>
+          <div className="flex justify-between items-center w-full">
+         <h1 className="text-2xl md:text-3xl font-medium tracking-wide">Hariprasad</h1>
+         <Link className="text-muted-foreground text-sm" to={"https://x.com/hariiprasad0"}>/ @hariiprasad0</Link>
+            </div>
           </div>
 
           <HoverCard>
-            <p className="text-sm sm:text-base md:text-md leading-6 md:leading-7 text-muted-foreground mb-6">
-              Backend-leaning{''}
+            <p className="text-sm leading-6 text-muted-foreground mb-6">
               <HoverCardTrigger asChild>
-                <span className=" cursor-pointer px-1.5 text-primary/80 underline underline-offset-4 font-medium decoration-wavy decoration-gray-400/70">
-                  Engineer
+                <span className=" cursor-pointer pr-1 text-primary text-md font-semibold decoration-gray-400/70">
+                  Backend Engineer
                 </span>
               </HoverCardTrigger>
-              with a strong interest in systems and security. I like reading technical papers and translating them into working software.            </p>
+              interested in <span className="font-semibold text-primary text-md">systems</span> and <span className="font-semibold text-primary text-md">security</span>. I enjoy understanding how things work at a low level and turning that understanding into clean, reliable software.
+             </p>
             <HoverCardContent className="w-80 rounded-none">
               <Link to={experience[0]?.link || "/"} target="_blank">
                 <div>
@@ -185,7 +199,7 @@ const Home = () => {
               </Link>
             </HoverCardContent>
           </HoverCard>
-          <div className="flex items-center gap-2">
+       <div className=" items-center gap-2 flex">
             {socialLinks.map((link) => {
               return (
                 <TooltipProvider key={link.id}>
