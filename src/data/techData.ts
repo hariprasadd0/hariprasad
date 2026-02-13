@@ -12,21 +12,25 @@ export interface TechCategory {
 import { BiLogoTypescript } from "react-icons/bi";
 
 import {
-  SiGoland,
   SiDocker,
   SiAmazon,
 } from "react-icons/si";
+import { FaGolang } from "react-icons/fa6";
+
 
 import { FaNodeJs } from "react-icons/fa";
 import { DiPostgresql, DiMongodb } from "react-icons/di";
+import { RiNextjsFill } from "react-icons/ri";
+
 
 export const techCategories: TechCategory[] = [
   {
     title: "Languages & Runtime",
     items: [
-      { tech: "Golang", Icon: SiGoland },
-      { tech: "TypeScript", Icon: BiLogoTypescript },
+      { tech: "Golang", Icon: FaGolang },
       { tech: "Node.js", Icon: FaNodeJs },
+      { tech: "TypeScript", Icon: BiLogoTypescript },
+      { tech: "Next.js", Icon: RiNextjsFill },
     ],
   },
   {
