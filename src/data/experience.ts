@@ -25,7 +25,7 @@ export const experience: ExperienceItem[] = [
   },
   {
     title: 'Freelancer',
-    company: 'Self',
+    company: 'Self Employed',
     duration: 'March 2024 - Present',
     link: '',
     current: false,
