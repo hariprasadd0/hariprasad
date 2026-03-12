@@ -26,7 +26,8 @@ export const loadMarkdownFiles = async (): Promise<BlogPost[]> => {
   // Use Vite's glob import to load all markdown files from journals folder
   // Try both absolute and relative paths
   const markdownFiles = import.meta.glob('../data/journals/**/*.md', {
-    as: 'raw',
+    query: '?raw',
+    import: 'default',
     eager: true
   });
 
