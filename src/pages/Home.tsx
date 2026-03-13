@@ -30,6 +30,7 @@ import {
   ModeToggle,
   Tech,
   Badge,
+  Kbd,
 } from "@/components/components";
 // Icons
 import { FiCalendar, FiGithub } from "react-icons/fi";
@@ -62,7 +63,8 @@ import { techCategories } from "@/data/techData";
 import { TechStack } from "@/components/tech-stack";
 import { DemoFrame } from "@/components/demoFrame";
 import { Helmet } from "react-helmet-async";
-import { bg } from "@/assets/workImg";
+import { DribbbleLogoIcon } from "@phosphor-icons/react";
+import { SiTryhackme } from "react-icons/si";
 
 const Home = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -151,16 +153,50 @@ const Home = () => {
       <Helmet>
         <title>Hariprasad | Full Stack Developer</title>
       </Helmet>
-      <Card className="h-full outline-none border-none shadow-none overflow-hidden rounded-none flex flex-col  items-center  p-6 pb-8 md:p-16 md:pb-8 gap-4 md:gap-10">
-        <section className="max-w-xl flex  flex-col gap-1 overflow-x-hidden">
+       
+      <Card className="dark:bg-[#101010] relative h-full outline-none border-none shadow-none overflow-hidden rounded-none flex flex-col  items-center px-6 md:p-0">
+<div
+  className="pointer-events-none fixed bottom-0 left-1/2 -translate-x-1/2 
+             w-full max-w-4xl h-14 z-50
+             backdrop-blur-[8px] 
+             bg-gradient-to-t from-background/50 via-background/20 to-transparent"
+  style={{
+    maskImage: "linear-gradient(to top, black 35%, transparent 100%)",
+    WebkitMaskImage: "linear-gradient(to top, black 35%, transparent 100%)"
+  }}
+/>
+
+       <div className=" relative  pt-16 pb-8 md:max-w-none max-w-xl flex flex-col gap-4 md:gap-10">
+           <div
+      className="absolute inset-0 z-0 -left-10 pointer-events-none dark:opacity-[0.06] opacity-[0.06] w-10
+                 border dark:border-[#eee] border-[#000]/70"
+      style={{
+        backgroundImage:
+          "repeating-linear-gradient(-45deg, transparent, transparent 2px, currentColor 2px, currentColor 3px, transparent 3px, transparent 6px)",
+      }}
+    />
+        <section className="max-w-xl flex  flex-col gap-1 overflow-x-hidden mx-16">
           <img
-            src={bg}
-            alt="Background"
-            className="w-full md:w-[48%] h-24 object-cover absolute -top-12 md:-top-3 -translate-x-[24px] md:-translate-x-[20px] translate-y-[10px] select-none"
+            src={"https://i.pinimg.com/1200x/1e/3c/de/1e3cdedb3e4e38b3ab900b5b10d1d26f.jpg"}
+            alt="banner"
+            className="w-full h-36 md:h-32 object-cover absolute -top-12 md:-top-3 left-0 translate-y-[10px] select-none"
+            style={{
+  maskImage: `
+    linear-gradient(to right, transparent, black 10%, black 90%, transparent),
+    linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)
+  `,
+  WebkitMaskImage: `
+    linear-gradient(to right, transparent, black 10%, black 90%, transparent),
+    linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)
+  `,
+  maskComposite: "intersect",
+  WebkitMaskComposite: "source-in",
+}}
           />
+          
           <div className="flex gap-2  mb-3 flex-col w-full">
-            <Avatar className="rounded-full w-16 h-16">
-              <AvatarImage alt="Hariprasad" src="/profile.jpg" />
+            <Avatar className="rounded-full h-20 w-20 md:w-24 md:h-24">
+              <AvatarImage alt="Hariprasad" src="https://i.pinimg.com/1200x/28/e7/84/28e784c256f8193db4b20fc59ef23a35.jpg" />
               <AvatarFallback className="text-sm text-gray-500">
                 HP
               </AvatarFallback>
@@ -172,16 +208,49 @@ const Home = () => {
           </div>
 
           <HoverCard>
-            <p className="text-sm leading-6 text-muted-foreground mb-6">
-              <HoverCardTrigger asChild>
-                <span className=" cursor-pointer pr-1 text-primary text-md font-semibold decoration-gray-400/70">
-                  Backend Engineer
-                </span>
-              </HoverCardTrigger>
-              interested in <span className="font-semibold text-primary text-md">systems</span> and <span className="font-semibold text-primary text-md">security</span>. I enjoy understanding how things work at a low level and turning that understanding into clean, reliable software.
-             </p>
-            <HoverCardContent className="w-80 rounded-none">
-              <Link to={experience[0]?.link || "/"} target="_blank">
+          <div className="text-sm leading-6 text-muted-foreground mb-6 space-y-3">
+  <p>
+    <HoverCardTrigger asChild>
+      <span className="pr-1 text-primary text-md font-semibold">
+        Backend Engineer
+      </span>
+    </HoverCardTrigger>
+    interested in <span className="font-semibold text-primary">systems</span>{" "}
+    and <span className="font-semibold text-primary">security</span>. I enjoy
+    understanding how things work at a low level and turning that understanding
+    into clean, reliable software.
+  </p>
+
+  <p>
+    I spend time exploring security challenges on{" "}
+    <a
+      href="https://tryhackme.com/p/hariprasad0"
+      target="_blank"
+      rel="noreferrer"
+      className="inline-flex items-center gap-1 mx-1 text-primary font-semibold align-middle"
+    >
+      <SiTryhackme size={16} className="h-[1em] w-[1em] text-red-500 align-middle drop-shadow-[0_2px_2px_rgba(0,0,0,0.35)]" />
+      TryHackMe
+    </a>{" "}
+    and when I step away from backend work I often experiment with UI/UX and
+    share a few of those ideas on{" "}
+    <a
+      href="https://dribbble.com"
+      target="_blank"
+      rel="noreferrer"
+      className="inline-flex items-center gap-1 mx-1 text-primary font-semibold align-middle"
+    >
+      <DribbbleLogoIcon
+        size={16}
+        weight="duotone"
+        className="align-middle  text-[#EA4C89] drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)] dark:drop-shadow-[0_1px_3px_rgba(234,76,137,0.45)]"
+      />
+      Dribbble
+    </a>.
+  </p>
+</div>
+            <HoverCardContent className="w-80 rounded-none hidden cursor-none">
+              {/* <Link to={experience[0]?.link || "/"} target="_blank">
                 <div>
                   <div className="space-y-1">
                     <h4 className="text-sm font-semibold">@{experience[0]?.company}</h4>
@@ -196,7 +265,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-              </Link>
+              </Link> */}
             </HoverCardContent>
           </HoverCard>
        <div className=" items-center gap-2 flex">
@@ -208,7 +277,7 @@ const Home = () => {
                       <Button
                         aria-label={link.ariaLabel}
                         variant={"outline"}
-                        className=" shadow-none py-3 px-3 rounded-[2px]"
+                        className=" shadow-none py-3 px-3 rounded-[2px] bg-muted/20"
                       >
                         <a
                           href={link.link}
@@ -276,7 +345,7 @@ const Home = () => {
         </section>
         <GithubChart isDarkMode={isDarkMode} />
         {/* WORKS */}
-        <section className="max-w-xl flex flex-col gap-7">
+        <section className="max-w-xl flex flex-col gap-7 mx-16">
           <div className="font-medium text-instrument text-lg tracking-wide">Projects</div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-center">
             {works.map((item) => {
@@ -288,7 +357,7 @@ const Home = () => {
                     }`}
                 >
                   {item.disabled ? (
-                    <Card className="disabled:bg-slate-700 card flex flex-col gap-4 p-4 rounded-[2px] shadow-none">
+                    <Card className="disabled:bg-slate-700 card flex flex-col gap-4 p-4 rounded-[2px] shadow-none ">
                       <div className="flex items-center space-x-3">
                         <Avatar className="rounded-[2px] w-12 h-12">
                           <AvatarImage alt="project" src={item.icon} />
@@ -316,7 +385,7 @@ const Home = () => {
                   ) : (
                     <Drawer>
                       <DrawerTrigger asChild>
-                        <Card className="  flex flex-col gap-4 p-4 rounded-[2px]  shadow-none  hover:shadow-md transition-shadow cursor-pointer w-full h-full">
+                        <Card className="bg-muted/20 flex flex-col gap-4 p-4 rounded-[2px]  shadow-none  hover:shadow-md transition-shadow cursor-pointer w-full h-full">
                           <img src={slides[0]} alt="" className="rounded-[2px]" />
                           <div className="flex items-center space-x-2 justify-between w-full">
                             <Avatar className="rounded-sm w-8 h-8 border">
@@ -507,7 +576,8 @@ const Home = () => {
             })}
           </div>
         </section>
-        <section className="max-w-xl flex flex-col gap-7">
+       
+        <section className="max-w-xl flex flex-col gap-7 mx-16">
           <div className="font-medium text-instrument text-lg tracking-wide">Writings</div>
 
           <Tabs value={activeCategory} onValueChange={setActiveCategory}>
@@ -532,7 +602,7 @@ const Home = () => {
                     <Card
                       key={item.id}
                       onClick={() => navigate(`/${item.slug}`, { replace: true })}
-                      className="flex flex-col gap-4 p-3 rounded-[2px] shadow-none hover:shadow-md transition-shadow cursor-pointer w-full h-full"
+                      className="flex flex-col gap-4 p-3 rounded-[2px] shadow-none hover:shadow-md transition-shadow cursor-pointer w-full h-full bg-muted/20"
                     >
                       <div className="flex flex-col h-full gap-2">
                         <Badge
@@ -559,7 +629,7 @@ const Home = () => {
                       <Card
                         key={item.id}
                         onClick={() => navigate(`/${item.slug}`)}
-                        className="flex flex-col gap-4 p-3 rounded-[2px] shadow-none hover:shadow-md transition-shadow cursor-pointer w-full h-full"
+                        className="flex flex-col gap-4 p-3 rounded-[2px] shadow-none hover:shadow-md transition-shadow cursor-pointer w-full h-full bg-muted/20"
                       >
                         <div className="flex flex-col h-full gap-2">
                           <Badge
@@ -583,8 +653,68 @@ const Home = () => {
             </TabsContents>
           </Tabs>
         </section>
+      <section className="max-w-xl  flex-col gap-6 mx-16 hidden">
+  <div className="font-medium text-instrument text-lg tracking-wide">
+    Open Source Contributions
+  </div>
 
-        <Footer />
+  <div className="flex flex-col gap-3">
+
+    <div className="group relative flex items-start gap-3 rounded-[2px] border bg-muted/20 backdrop-blur-sm p-3 transition hover:bg-muted/40">
+      
+      <span className="absolute left-0 top-0 bottom-0 w-[2px] bg-primary/60 opacity-60 group-hover:opacity-100"></span>
+
+      <FiGithub className="mt-[3px] text-muted-foreground" size={16} />
+
+      <div className="flex flex-col gap-[2px]">
+        <span className="text-sm font-medium">xmigrate</span>
+        <span className="text-xs text-muted-foreground">
+          Improved PostgreSQL query performance and added migration tests.
+        </span>
+      </div>
+
+      <span className="ml-auto text-[11px] text-muted-foreground">
+        2025
+      </span>
+
+    </div>
+
+    <div className="group relative flex items-start gap-3 rounded-[2px] border bg-muted/20 backdrop-blur-sm p-3 transition hover:bg-muted/40">
+      
+      <span className="absolute left-0 top-0 bottom-0 w-[2px] bg-primary/60 opacity-60 group-hover:opacity-100"></span>
+
+      <FiGithub className="mt-[3px] text-muted-foreground" size={16} />
+
+      <div className="flex flex-col gap-[2px]">
+        <span className="text-sm font-medium">Fumadocs</span>
+        <span className="text-xs text-muted-foreground">
+          Fixed UI components and improved documentation layout.
+        </span>
+      </div>
+
+      <span className="ml-auto text-[11px] text-muted-foreground">
+        2024
+      </span>
+
+    </div>
+
+  </div>
+</section>
+
+            <section className="relative mx-16 py-4 w-full ">
+              <span className=" border-b w-full" />
+           <Footer />
+            </section>
+          <div
+      className="absolute  z-0 -right-10 top-0 bottom-0 pointer-events-none dark:opacity-[0.06] opacity-[0.06] w-10
+                 border dark:border-[#eee] border-[#000]/70"
+      style={{
+        backgroundImage:
+          "repeating-linear-gradient(-45deg, transparent, transparent 2px, currentColor 2px, currentColor 3px, transparent 3px, transparent 6px)",
+      }}
+    />
+        </div>
+      
       </Card>
     </>
   );
