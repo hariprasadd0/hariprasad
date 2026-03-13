@@ -165,7 +165,7 @@ const Home = () => {
   }}
 />
 
-       <div className=" relative  pt-16 pb-8 mx-16 md:max-w-none max-w-xl flex flex-col gap-4 md:gap-10">
+       <div className=" relative  pt-16 pb-8 mx-16 md:max-w-none max-w-lg flex flex-col gap-4 md:gap-10">
            <div
       className="absolute inset-0 z-0 -left-10 pointer-events-none dark:opacity-[0.06] opacity-[0.06] w-10
                  border dark:border-[#eee] border-[#000]/70"

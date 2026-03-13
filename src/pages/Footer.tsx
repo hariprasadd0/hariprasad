@@ -76,7 +76,7 @@ const Footer: React.FC = () => {
     )
   }
   return (
-    <footer className="flex justify-between w-full max-w-xl">       
+    <footer className="flex justify-between md:w-full w-9/12 md:max-w-xl max-w-lg">       
       <p className="text-xs">
         © {currentDate.getFullYear()} Hariprasad.
       </p>
