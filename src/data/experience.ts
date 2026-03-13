@@ -4,7 +4,7 @@ export type ExperienceItem = {
   companyLogo?: string;
   duration: string;
   link?: string;
-  skills: string[];
+  description?:string|string[];
   current: boolean;
 };
 
@@ -15,21 +15,15 @@ export const experience: ExperienceItem[] = [
     companyLogo: 'https://xmigrate.cloud/icons/logo.svg',
     duration: 'June 2025 - Present',
     link: 'https://xmigrate.cloud',
-    skills: [
-      'python',
-      'postgresql',
-      'golang',
-      'nextjs',
-    ],
+    description: [],
     current: true,
   },
   {
     title: 'Freelancer',
     company: 'Self Employed',
     duration: 'March 2024 - Present',
-    link: '',
+    description: ['Designed and built client websites', 'Crafted UI/UX flows', 'Delivered end-to-end web projects'],
     current: false,
-    skills: ['Web Development', 'UI/UX',],
   },
 ];
 
