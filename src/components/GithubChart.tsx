@@ -25,9 +25,9 @@ export const GithubChart: React.FC<GithubChartProps> = ({ isDarkMode }) => {
   const currentYear = new Date().getFullYear()
   return (
     <GithubCalErrorBoundary>
-      <section className="w-full max-w-xl mx-auto px-4 sm:px-6 lg:px-0 pt-5 pb-5">
+      <section className=" max-w-xl mx-16  px-0 pt-5 pb-5">
         <div className="w-full overflow-hidden">
-          <div className="w-full min-w-[300px] max-w-full overflow-x-auto">
+          <div className="w-full min-w-[300px] max-w-full overflow-x-hidden">
             <div className="min-w-[600px] sm:min-w-0">
               <GitHubCalendar
                 username="hariprasadd0"
@@ -43,6 +43,23 @@ export const GithubChart: React.FC<GithubChartProps> = ({ isDarkMode }) => {
                   width: "100%",
                   maxWidth: "100%",
                 }}
+theme={{
+  light: [
+    "hsl(var(--muted) / 0.4)",   // level 0
+    "hsl(var(--primary) / 0.25)",
+    "hsl(var(--primary) / 0.45)",
+    "hsl(var(--primary) / 0.65)",
+    "hsl(var(--primary) / 0.85)"
+  ],
+  dark: [
+    "hsl(var(--muted) / 0.25)",  // level 0
+    "hsl(var(--primary) / 0.35)",
+    "hsl(var(--primary) / 0.55)",
+    "hsl(var(--primary) / 0.75)",
+    "hsl(var(--primary) / 0.95)"
+  ]
+}}
+                
               />
             </div>
           </div>
