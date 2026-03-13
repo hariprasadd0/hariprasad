@@ -13,7 +13,7 @@ export function ModeToggle() {
   return (
     <Button
       onClick={toggleTheme}
-      className="shadow-none rounded-[2px]"
+      className="shadow-none rounded-[2px] bg-muted/20 "
       variant="outline"
       size="icon"
     >
