@@ -30,10 +30,9 @@ import {
   ModeToggle,
   Tech,
   Badge,
-  Kbd,
 } from "@/components/components";
 // Icons
-import { FiCalendar, FiGithub } from "react-icons/fi";
+import {  FiGithub } from "react-icons/fi";
 import {
   Tabs,
   TabsContent,
@@ -250,22 +249,7 @@ const Home = () => {
   </p>
 </div>
             <HoverCardContent className="w-80 rounded-none hidden cursor-none">
-              {/* <Link to={experience[0]?.link || "/"} target="_blank">
-                <div>
-                  <div className="space-y-1">
-                    <h4 className="text-sm font-semibold">@{experience[0]?.company}</h4>
-                    <p className="text-sm">
-                      {experience[0]?.title}
-                    </p>
-                    <div className="flex items-center pt-2">
-                      <FiCalendar className="mr-2 h-4 w-4 opacity-70" />{' '}
-                      <span className="text-xs text-muted-foreground">
-                        {experience[0]?.duration}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </Link> */}
+             
             </HoverCardContent>
           </HoverCard>
        <div className=" items-center gap-2 flex">
