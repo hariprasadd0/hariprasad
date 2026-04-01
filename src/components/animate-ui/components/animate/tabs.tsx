@@ -32,7 +32,7 @@ function TabsList({ className, ...props }: TabsListProps) {
     <TabsHighlightPrimitive className="absolute z-0 inset-0 border border-transparent rounded-[2px] bg-background dark:border-input dark:bg-input/30 shadow-sm">
       <TabsListPrimitive
         className={cn(
-          "bg-muted text-muted-foreground inline-flex h-9 w-fit items-center justify-center rounded-[2px] p-[3px]",
+          "bg-muted dark:bg-muted/20 text-muted-foreground inline-flex h-9 w-fit items-center justify-center rounded-[2px] p-[3px]",
           className,
         )}
         {...props}
@@ -48,7 +48,7 @@ function TabsTrigger({ className, ...props }: TabsTriggerProps) {
     <TabsHighlightItemPrimitive value={props.value} className="flex-1">
       <TabsTriggerPrimitive
         className={cn(
-          "data-[state=active]:text-foreground data-[state=active]:dark:bg-background focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-[2px] w-full px-2 py-1 dark:py-1.5 text-sm font-medium whitespace-nowrap transition-colors duration-500 ease-in-out focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+          "data-[state=active]:text-foreground data-[state=active]:dark:bg-muted data-[state=active]:dark:shadow-md focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-[2px] w-full px-2 py-1 dark:py-1.5 text-sm font-medium whitespace-nowrap transition-colors duration-500 ease-in-out focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
           className,
         )}
         {...props}
