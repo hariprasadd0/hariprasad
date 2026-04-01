@@ -90,7 +90,7 @@ const Footer: React.FC = () => {
               loading="lazy"
             />
             <span className="text-subtext">
-              {Math.round(weather.main.temp)}°C • {location} • <span className='min-w-[110px]'>{formatTime(time)}</span>
+              {Math.round(weather.main.temp)}°C • {location} • <span className='min-w-[110px] tabular-nums'>{formatTime(time)}</span>
             </span>
           </div>
         ) : (
