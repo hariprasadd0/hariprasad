@@ -62,7 +62,6 @@ import { techCategories } from "@/data/techData";
 import { TechStack } from "@/components/tech-stack";
 import { DemoFrame } from "@/components/demoFrame";
 import { Helmet } from "react-helmet-async";
-import { DribbbleLogoIcon } from "@phosphor-icons/react";
 import { SiTryhackme } from "react-icons/si";
 
 const Home = () => {
@@ -153,7 +152,7 @@ const Home = () => {
         <title>Hariprasad | Full Stack Developer</title>
       </Helmet>
        
-      <Card className="dark:bg-[#101010] relative h-full outline-none border-none shadow-none overflow-hidden rounded-none flex flex-col  items-center px-6 md:p-0">
+      <Card className="dark:bg-[#101010] relative h-full outline-none border-none shadow-none overflow-hidden rounded-none flex flex-col items-center px-6 md:p-0">
 <div
   className="pointer-events-none fixed bottom-0 left-1/2 -translate-x-1/2 
              w-full max-w-4xl h-14 z-50
@@ -165,20 +164,20 @@ const Home = () => {
   }}
 />
 
-       <div className=" relative  pt-16 pb-8 mx-16 md:max-w-none max-w-lg flex flex-col gap-4 md:gap-10">
+       <div className=" relative pt-16 pb-8 mx-16 md:max-w-none max-w-lg flex flex-col gap-4 md:gap-10">
            <div
-      className="absolute inset-0 z-0 -left-10 pointer-events-none dark:opacity-[0.06] opacity-[0.06] w-10
-                 border dark:border-[#eee] border-[#000]/70"
+      className="absolute inset-0 z-0 -left-10 pointer-events-none dark:opacity-[0.08] opacity-[0.08] w-10"
       style={{
-        backgroundImage:
-          "repeating-linear-gradient(-45deg, transparent, transparent 2px, currentColor 2px, currentColor 3px, transparent 3px, transparent 6px)",
+        backgroundImage: `radial-gradient(circle, currentColor 1px, transparent 1px)`,
+        backgroundSize: "10px 10px",
       }}
     />
-        <section className="max-w-xl flex  flex-col gap-1 overflow-x-hidden mx-16">
+        <section className="max-w-xl flex flex-col gap-1 overflow-x-hidden mx-16">
+          {/* Banner */}
           <img
-            src={"https://i.pinimg.com/1200x/1e/3c/de/1e3cdedb3e4e38b3ab900b5b10d1d26f.jpg"}
+            src="https://i.pinimg.com/1200x/10/50/64/1050642e277d462a7048557c6416fe41.jpg"
             alt="banner"
-            className="w-full h-36 md:h-32 object-cover absolute -top-12 md:-top-3 left-0 translate-y-[10px] select-none"
+            className="w-full h-28 md:h-32 object-cover absolute -top-12 md:-top-3 left-0 translate-y-[10px] select-none"
             style={{
   maskImage: `
     linear-gradient(to right, transparent, black 10%, black 90%, transparent),
@@ -194,7 +193,7 @@ const Home = () => {
           />
           
           <div className="flex gap-2  mb-3 flex-col w-full">
-            <Avatar className="rounded-full h-20 w-20 md:w-24 md:h-24">
+            <Avatar className="rounded-md h-20 w-20 md:w-24 md:h-24">
               <AvatarImage alt="Hariprasad" src="https://i.pinimg.com/1200x/28/e7/84/28e784c256f8193db4b20fc59ef23a35.jpg" />
               <AvatarFallback className="text-sm text-gray-500">
                 HP
@@ -214,8 +213,8 @@ const Home = () => {
         Backend Engineer
       </span>
     </HoverCardTrigger>
-    interested in <span className="font-semibold text-primary">systems</span>{" "}
-    and <span className="font-semibold text-primary">security</span>. I enjoy
+    interested in <span className="font-semibold text-primary relative">systems</span>{" "}
+    and <span className="font-semibold text-primary relative">security</span>. I enjoy
     understanding how things work at a low level and turning that understanding
     into clean, reliable software.
   </p>
@@ -230,21 +229,6 @@ const Home = () => {
     >
       <SiTryhackme size={16} className="h-[1em] w-[1em] text-red-500 align-middle drop-shadow-[0_2px_2px_rgba(0,0,0,0.35)]" />
       TryHackMe
-    </a>{" "}
-    and when I step away from backend work I often experiment with UI/UX and
-    share a few of those ideas on{" "}
-    <a
-      href="https://dribbble.com"
-      target="_blank"
-      rel="noreferrer"
-      className="inline-flex items-center gap-1 mx-1 text-primary font-semibold align-middle"
-    >
-      <DribbbleLogoIcon
-        size={16}
-        weight="duotone"
-        className="align-middle  text-[#EA4C89] drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)] dark:drop-shadow-[0_1px_3px_rgba(234,76,137,0.45)]"
-      />
-      Dribbble
     </a>.
   </p>
 </div>
@@ -261,7 +245,7 @@ const Home = () => {
                       <Button
                         aria-label={link.ariaLabel}
                         variant={"outline"}
-                        className=" shadow-none py-3 px-3 rounded-[2px] bg-muted/20"
+                        className=" shadow-none py-3 px-3 rounded-[2px] bg-muted/20 hover:bg-muted/40 hover:shadow-md hover:shadow-primary/10 transition-all duration-200"
                       >
                         <a
                           href={link.link}
@@ -369,7 +353,7 @@ const Home = () => {
                   ) : (
                     <Drawer>
                       <DrawerTrigger asChild>
-                        <Card className="bg-muted/20 flex flex-col gap-4 p-4 rounded-[2px]  shadow-none  hover:shadow-md transition-shadow cursor-pointer w-full h-full">
+                        <Card className="bg-muted/20 flex flex-col gap-4 p-4 rounded-[2px] shadow-none hover:shadow-md hover:shadow-primary/10 transition-all duration-300 cursor-pointer w-full h-full">
                           <img src={slides[0]} alt="" className="rounded-[2px]" />
                           <div className="flex items-center space-x-2 justify-between w-full">
                             <Avatar className="rounded-sm w-8 h-8 border">
@@ -411,14 +395,14 @@ const Home = () => {
                             <div className="flex items-center gap-1">
                               <button
                                 onClick={handleLiveClick(item.liveLink)}
-                                className="text-xs p-1 dark:bg-muted rounded-[2px] cursor-pointer"
+                                className="text-xs p-1 dark:bg-muted rounded-[2px] cursor-pointer hover:bg-primary/10 transition-colors"
                               >
                                 Live
                               </button>
                               <span className="text-xs text-gray-500 ">|</span>
                               <span
                                 onClick={handleLiveClick(item.githubLink)}
-                                className="text-xs p-1 dark:bg-muted rounded-[2px] cursor-pointer"
+                                className="text-xs p-1 dark:bg-muted rounded-[2px] cursor-pointer hover:bg-primary/10 transition-colors"
                               >
                                 GitHub
                               </span>
@@ -450,7 +434,7 @@ const Home = () => {
                                     <p className="font-normal text-sm text-start text-muted-foreground">{item?.context}</p>
                                     <div className="flex gap-3 p-1">
                                       <Link to={item.githubLink}>
-                                        <Button size="sm" className="flex gap-2">
+                                        <Button size="sm" className="flex gap-2 hover:shadow-sm hover:shadow-primary/20 transition-all">
                                           <FiGithub />
                                           View Project
                                         </Button>
@@ -472,9 +456,9 @@ const Home = () => {
                               <Separator />
                               <ScrollArea className="h-[90vh]">
                                 <Tabs className="px-3 py-3" defaultValue="overview">
-                                  <TabsList>
-                                    <TabsTrigger className="text-xs" value="overview">Overview</TabsTrigger>
-                                    <TabsTrigger className="text-xs" value="caseStudy">Details</TabsTrigger>
+                                  <TabsList className="bg-muted/30 backdrop-blur-sm">
+                                    <TabsTrigger className="text-xs data-[state=active]:shadow-sm data-[state=active]:shadow-primary/20" value="overview">Overview</TabsTrigger>
+                                    <TabsTrigger className="text-xs data-[state=active]:shadow-sm data-[state=active]:shadow-primary/20" value="caseStudy">Details</TabsTrigger>
                                     <button className="absolute right-14">
                                       <FlagIcon size={18} />
                                     </button>
@@ -512,7 +496,7 @@ const Home = () => {
                                                 return IconComponent ? (
                                                   <Tech key={index} tech={techName} Icon={IconComponent} />
                                                 ) : (
-                                                  <span key={index} className="text-sm text-muted-foreground bg-muted px-2 py-1 rounded-[2px]">
+                                                  <span key={index} className="text-sm text-muted-foreground bg-muted/50 px-2 py-1 rounded-[2px] hover:bg-primary/10 transition-colors">
                                                     {techName}
                                                   </span>
                                                 );
@@ -536,10 +520,10 @@ const Home = () => {
                                         </CardContent>
                                         <CardFooter className="p-4 flex items-center justify-between border-t">
                                           <Link to={item.liveLink}>
-                                            <Button variant="outline" size="sm">Live Demo</Button>
+                                            <Button variant="outline" size="sm" className="hover:bg-primary/10 transition-colors">Live Demo</Button>
                                           </Link>
                                           <Link to={item.githubLink}>
-                                            <Button variant="default" size="sm">View Code</Button>
+                                            <Button variant="default" size="sm" className="hover:shadow-sm hover:shadow-primary/20 transition-all">View Code</Button>
                                           </Link>
                                         </CardFooter>
                                       </Card>
@@ -595,6 +579,7 @@ const Home = () => {
                           <p>{item.date}</p>
                           <p>{item.readTime}</p>
                         </Badge>
+                        <img src={item.imageUrl} alt={item.title} className="w-full h-24 object-scale-down rounded-md" />
                         <h6 className="text-lg font-medium mt-2">{item.title}</h6>
                         <p className="text-xs text-muted-foreground mt-1 line-clamp-3 flex-grow">
                           {item.description}
@@ -622,6 +607,7 @@ const Home = () => {
                             <p>{item.date}</p>
                             <p>{item.readTime}</p>
                           </Badge>
+                          <img src={item.imageUrl} alt={item.title} className="w-full h-24 object-scale-down rounded-md" />
                           <h6 className="text-lg font-medium mt-2">
                             {item.title}
                           </h6>
@@ -637,14 +623,14 @@ const Home = () => {
             </TabsContents>
           </Tabs>
         </section>
-      <section className="max-w-xl  flex-col gap-6 mx-16 hidden">
+      <section className="max-w-xl flex-col gap-6 mx-16 hidden">
   <div className="font-medium text-instrument text-lg tracking-wide">
     Open Source Contributions
   </div>
 
   <div className="flex flex-col gap-3">
 
-    <div className="group relative flex items-start gap-3 rounded-[2px] border bg-muted/20 backdrop-blur-sm p-3 transition hover:bg-muted/40">
+    <div className="group relative flex items-start gap-3 rounded-[2px] border bg-muted/20 backdrop-blur-sm p-3 transition hover:bg-muted/40 hover:shadow-sm hover:shadow-primary/10">
       
       <span className="absolute left-0 top-0 bottom-0 w-[2px] bg-primary/60 opacity-60 group-hover:opacity-100"></span>
 
@@ -663,7 +649,7 @@ const Home = () => {
 
     </div>
 
-    <div className="group relative flex items-start gap-3 rounded-[2px] border bg-muted/20 backdrop-blur-sm p-3 transition hover:bg-muted/40">
+    <div className="group relative flex items-start gap-3 rounded-[2px] border bg-muted/20 backdrop-blur-sm p-3 transition hover:bg-muted/40 hover:shadow-sm hover:shadow-primary/10">
       
       <span className="absolute left-0 top-0 bottom-0 w-[2px] bg-primary/60 opacity-60 group-hover:opacity-100"></span>
 
@@ -690,11 +676,10 @@ const Home = () => {
            <Footer />
             </section>
           <div
-      className="absolute  z-0 -right-10 top-0 bottom-0 pointer-events-none dark:opacity-[0.06] opacity-[0.06] w-10
-                 border dark:border-[#eee] border-[#000]/70"
+      className="absolute  z-0 -right-10 top-0 bottom-0 pointer-events-none dark:opacity-[0.06] opacity-[0.06] w-10"
       style={{
-        backgroundImage:
-          "repeating-linear-gradient(-45deg, transparent, transparent 2px, currentColor 2px, currentColor 3px, transparent 3px, transparent 6px)",
+        backgroundImage: `radial-gradient(circle, currentColor 1px, transparent 1px)`,
+        backgroundSize: "10px 10px",
       }}
     />
         </div>
