@@ -5,6 +5,7 @@ date: "Dec 04, 2024"
 readTime: "6 min"
 author: "Hariprasad"
 category: "ctf"
+imageUrl: "https://tryhackme-images.s3.amazonaws.com/room-icons/618b3fa52f0acc0061fb0172-1718377390091"
 ---
 
 ## Overview

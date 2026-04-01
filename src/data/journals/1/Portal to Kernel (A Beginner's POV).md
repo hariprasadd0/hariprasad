@@ -5,6 +5,7 @@ category: "system"
 date: "Oct 28, 2025"
 author: "Hariprasad"
 readTime: "5 min"
+imageUrl: "/images/bee.png"
 ---
 
 
